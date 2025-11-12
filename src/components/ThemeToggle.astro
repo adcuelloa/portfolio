@@ -14,13 +14,19 @@ const THEMES = ["Light", "Dark", "System"];
   >
     <span class="sr-only">Elige el tema</span>
     <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
-    <MoonIcon id="dark" class="theme-toggle-icon absolute size-5 transition-all" />
-    <SystemIcon id="system" class="theme-toggle-icon absolute size-5 transition-all" />
+    <MoonIcon
+      id="dark"
+      class="theme-toggle-icon absolute size-5 transition-all"
+    />
+    <SystemIcon
+      id="system"
+      class="theme-toggle-icon absolute size-5 transition-all"
+    />
   </button>
   <div
     data-transition-persist
     id="themes-menu"
-    class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-[8rem] rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
+    class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-32 rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
   >
     <ul>
       {
@@ -63,7 +69,9 @@ const THEMES = ["Light", "Dark", "System"];
       return localStorage.getItem("theme") ?? "system";
     }
 
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
   };
 
   const updateIcon = (themePreference) => {
@@ -83,7 +91,8 @@ const THEMES = ["Light", "Dark", "System"];
 
     const themePreference = getThemePreference();
     const isDark =
-      themePreference === "dark" || (themePreference === "system" && matchMedia.matches);
+      themePreference === "dark" ||
+      (themePreference === "system" && matchMedia.matches);
 
     updateIcon(themePreference);
     document.documentElement.classList[isDark ? "add" : "remove"]("dark");
