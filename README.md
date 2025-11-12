@@ -16,5 +16,3 @@ Este proyecto está basado en el excelente trabajo de **Miguel Ángel Durán (mi
 - **Autor Original:** [midudev](https://github.com/midudev)
 
 Gran parte de la estructura, configuración inicial y prácticas de desarrollo fueron adoptadas de este repositorio. Agradecimientos a Midudev por compartir su trabajo con la comunidad.
-
-<p></p>
