@@ -4,7 +4,6 @@
 <a href="https://cuello.dev/">
 <img src="./public/porfolio.webp">
 </a>
-<p></p>
 </div>
 
 ## 💡 Base del Proyecto
