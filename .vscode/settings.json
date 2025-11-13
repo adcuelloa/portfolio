@@ -46,5 +46,10 @@
   },
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
-  }
+  },
+
+  // === Otras Configuraciones ===
+  "editor.fontFamily": "Cascadia Code, Consolas, 'Courier New', monospace",
+  "editor.wordWrap": "on",
+  "git.autofetch": true
 }
