@@ -6,21 +6,23 @@ import { getLangFromUrl, useTranslations } from "@/i18n";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
+const basePath = lang === "en" ? "/en/" : "/";
+
 const navItems = [
   {
     title: t("nav.experience"),
     label: t("slugs.experience"),
-    url: `#${t("slugs.experience")}`,
+    url: `${basePath}#${t("slugs.experience")}`,
   },
   {
     title: t("nav.projects"),
     label: t("slugs.projects"),
-    url: `#${t("slugs.projects")}`,
+    url: `${basePath}#${t("slugs.projects")}`,
   },
   {
     title: t("nav.about"),
     label: t("slugs.about"),
-    url: `#${t("slugs.about")}`,
+    url: `${basePath}#${t("slugs.about")}`,
   },
   {
     title: t("nav.contact"),

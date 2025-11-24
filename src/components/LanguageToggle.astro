@@ -1,5 +1,5 @@
 ---
-import { languages, getLangFromUrl } from "@/i18n";
+import { languages, getLangFromUrl, ui } from "@/i18n";
 import ColombiaFlag from "@/components/icons/Colombia.astro";
 import USAFlag from "@/components/icons/USA.astro";
 
@@ -9,9 +9,16 @@ const LANGUAGES = Object.entries(languages).map(([code, name]) => ({
   code,
   name,
 }));
+
+// Serialize slugs for client-side use
+const slugsData = {
+  es: ui.es.slugs,
+  en: ui.en.slugs,
+};
+const slugsJson = JSON.stringify(slugsData);
 ---
 
-<div class="relative ml-1 mr-1 z-20">
+<div class="relative ml-1 mr-1 z-20" data-slugs={slugsJson}>
   <button
     data-transition-persist
     id="language-toggle-btn"
@@ -122,6 +129,34 @@ const LANGUAGES = Object.entries(languages).map(([code, name]) => ({
     }
   });
 
+  // Get slugs from data attribute
+  const toggleWrapper = document.querySelector("[data-slugs]");
+  const slugsData = toggleWrapper
+    ? JSON.parse(toggleWrapper.getAttribute("data-slugs") || "{}")
+    : {};
+
+  // Helper to translate hash between languages
+  // @ts-ignore - Parameters inferred from runtime usage
+  const translateHash = (hash, fromLang, toLang) => {
+    if (!hash || !hash.startsWith("#")) return "";
+
+    const hashValue = hash.substring(1); // Remove #
+    const fromSlugs = slugsData[fromLang] || {};
+    const toSlugs = slugsData[toLang] || {};
+
+    // Find which key maps to the current hash in the source language
+    const matchingKey = Object.keys(fromSlugs).find(
+      (key) => fromSlugs[key] === hashValue
+    );
+
+    // If found, return the translation; otherwise return the original hash
+    if (matchingKey && toSlugs[matchingKey]) {
+      return "#" + toSlugs[matchingKey];
+    }
+
+    return hash; // Keep original if no translation found
+  };
+
   // Use event delegation on the menu so listeners survive Astro DOM swaps
   if (languagesMenu) {
     languagesMenu.addEventListener("click", (e) => {
@@ -139,6 +174,8 @@ const LANGUAGES = Object.entries(languages).map(([code, name]) => ({
       localStorage.setItem("language", lang);
 
       const currentPath = window.location.pathname;
+      const currentHash = window.location.hash;
+      const currentLang = currentPath.startsWith("/en") ? "en" : "es";
       let newPath = currentPath;
 
       if (lang === "es") {
@@ -149,16 +186,33 @@ const LANGUAGES = Object.entries(languages).map(([code, name]) => ({
         }
       }
 
-      if (newPath !== "/" && newPath.endsWith("/")) {
-        newPath = newPath.slice(0, -1);
+      // Translate the hash to the new language
+      const translatedHash = translateHash(currentHash, currentLang, lang);
+
+      // Normalize path based on whether there's a hash
+      if (translatedHash) {
+        // Has hash: ensure path ends with /
+        if (newPath === "/" || newPath === "/en") {
+          newPath = newPath + (newPath.endsWith("/") ? "" : "/");
+        } else {
+          // For other paths, ensure trailing slash
+          if (!newPath.endsWith("/")) {
+            newPath = newPath + "/";
+          }
+        }
+      } else {
+        // No hash: remove trailing slash (except for root)
+        if (newPath !== "/" && newPath.endsWith("/")) {
+          newPath = newPath.slice(0, -1);
+        }
       }
+
       if (newPath === "") newPath = "/";
 
-      const finalUrl = newPath;
+      // Build final URL
+      const finalUrl = newPath + translatedHash;
 
-      if (newPath !== currentPath) {
-        window.location.href = finalUrl;
-      }
+      window.location.href = finalUrl;
     });
   }
 </script>
