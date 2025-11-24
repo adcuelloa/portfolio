@@ -11,11 +11,11 @@ const LANGUAGES = Object.entries(languages).map(([code, name]) => ({
 }));
 ---
 
-<div class="relative ml-1 mr-1">
+<div class="relative ml-1 mr-1 z-20">
   <button
     data-transition-persist
     id="language-toggle-btn"
-    class="appearance-none border-none flex hover:scale-125 transition hover:cursor-pointer"
+    class="appearance-none border-none flex hover:scale-125 hover:cursor-pointer transition"
   >
     <span class="sr-only">Cambiar idioma / Change language</span>
     {
@@ -29,7 +29,7 @@ const LANGUAGES = Object.entries(languages).map(([code, name]) => ({
   <div
     data-transition-persist
     id="languages-menu"
-    class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-32 rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
+    class="absolute hidden z-50 scale-80 top-8 right-0 text-sm p-1 min-w-32 rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
   >
     <ul>
       {
@@ -67,7 +67,10 @@ const LANGUAGES = Object.entries(languages).map(([code, name]) => ({
 
 <script>
   const languagesMenu = document.getElementById("languages-menu");
-  const languageToggleBtn = document.getElementById("language-toggle-btn");
+  let languageToggleBtn = document.getElementById("language-toggle-btn");
+  if (!languageToggleBtn) {
+    languageToggleBtn = document.querySelector("#language-toggle-btn");
+  }
 
   const getLanguagePreference = () => {
     return window.location.pathname.startsWith("/en") ? "en" : "es";
@@ -76,7 +79,7 @@ const LANGUAGES = Object.entries(languages).map(([code, name]) => ({
   const updateActiveLanguageInMenu = () => {
     const currentLang = getLanguagePreference();
     document.querySelectorAll(".languages-menu-option").forEach((element) => {
-      const lang = (element as HTMLElement).getAttribute("data-lang");
+      const lang = element.getAttribute("data-lang");
       if (lang === currentLang) {
         element.classList.add("text-blue-500", "font-semibold");
       } else {
@@ -89,9 +92,7 @@ const LANGUAGES = Object.entries(languages).map(([code, name]) => ({
     languagesMenu?.classList.remove("open")
   );
 
-  languageToggleBtn?.addEventListener("click", (e) => {
-    e.stopPropagation();
-
+  const toggleLanguageMenu = () => {
     const themesMenu = document.getElementById("themes-menu");
     if (themesMenu) {
       themesMenu.classList.remove("open");
@@ -101,43 +102,63 @@ const LANGUAGES = Object.entries(languages).map(([code, name]) => ({
 
     const isClosed = !languagesMenu?.classList.contains("open");
     languagesMenu?.classList[isClosed ? "add" : "remove"]("open");
+    if (languageToggleBtn)
+      languageToggleBtn.setAttribute("aria-expanded", String(isClosed));
+  };
+
+  if (languageToggleBtn) {
+    languageToggleBtn.addEventListener("click", function (e) {
+      if (e && typeof e.stopPropagation === "function") e.stopPropagation();
+      toggleLanguageMenu();
+    });
+  }
+
+  // Reattach after swaps in case Astro replaces the node
+  document.addEventListener("astro:after-swap", () => {
+    const btn = document.getElementById("language-toggle-btn");
+    if (btn && btn !== languageToggleBtn) {
+      languageToggleBtn = btn;
+      languageToggleBtn.addEventListener("click", toggleLanguageMenu);
+    }
   });
 
-  document.querySelectorAll(".languages-menu-option").forEach((element) => {
-    element.addEventListener("click", (e) => {
-      const lang =
-        (e.target as HTMLElement).getAttribute("data-lang") ||
-        (e.target as HTMLElement).closest("li")?.getAttribute("data-lang");
+  // Use event delegation on the menu so listeners survive Astro DOM swaps
+  if (languagesMenu) {
+    languagesMenu.addEventListener("click", (e) => {
+      // prevent the document click handler from closing the menu before we run
+      if (e && typeof e.stopPropagation === "function") e.stopPropagation();
 
-      if (lang) {
-        localStorage.setItem("language", lang);
+      const target = e.target;
+      const el = target instanceof Element ? target : null;
+      const option = el ? el.closest(".languages-menu-option") : null;
+      if (!option) return;
 
-        const currentPath = window.location.pathname;
-        const currentHash = window.location.hash;
-        let newPath = currentPath;
+      const lang = option.getAttribute("data-lang");
+      if (!lang) return;
 
-        if (lang === "es") {
-          newPath = currentPath.replace(/^\/en(\/|$)/, "/");
-        } else if (lang === "en") {
-          if (!currentPath.startsWith("/en")) {
-            newPath = "/en" + (currentPath === "/" ? "/" : currentPath);
-          }
-        }
+      localStorage.setItem("language", lang);
 
-        if (newPath !== "/" && newPath.endsWith("/")) {
-          newPath = newPath.slice(0, -1);
-        }
-        if (newPath === "") {
-          newPath = "/";
-        }
+      const currentPath = window.location.pathname;
+      let newPath = currentPath;
 
-        // Construir URL completa con hash
-        const finalUrl = currentHash ? `${newPath}/${currentHash}` : newPath;
-
-        if (newPath !== currentPath) {
-          window.location.href = finalUrl;
+      if (lang === "es") {
+        newPath = currentPath.replace(/^\/en(\/|$)/, "/");
+      } else if (lang === "en") {
+        if (!currentPath.startsWith("/en")) {
+          newPath = "/en" + (currentPath === "/" ? "/" : currentPath);
         }
       }
+
+      if (newPath !== "/" && newPath.endsWith("/")) {
+        newPath = newPath.slice(0, -1);
+      }
+      if (newPath === "") newPath = "/";
+
+      const finalUrl = newPath;
+
+      if (newPath !== currentPath) {
+        window.location.href = finalUrl;
+      }
     });
-  });
+  }
 </script>

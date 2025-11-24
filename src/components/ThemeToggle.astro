@@ -6,7 +6,7 @@ import SystemIcon from "./icons/System.astro";
 const THEMES = ["System", "Dark", "Light"];
 ---
 
-<div class="relative ml-1 mr-1">
+<div class="relative ml-1 mr-1 z-20">
   <button
     data-transition-persist
     id="theme-toggle-btn"
@@ -26,7 +26,7 @@ const THEMES = ["System", "Dark", "Light"];
   <div
     data-transition-persist
     id="themes-menu"
-    class="absolute hidden scale-80 top-8 right-0 text-sm p-1 min-w-32 rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
+    class="absolute hidden z-50 scale-80 top-8 right-0 text-sm p-1 min-w-32 rounded-md border border-gray-100 bg-white/90 dark:bg-gray-900/90 dark:border-gray-500/20 shadow-[0_3px_10px_rgb(0,0,0,0.2)] backdrop-blur-md"
   >
     <ul>
       {

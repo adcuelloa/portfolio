@@ -65,7 +65,6 @@
       {
         "title": "Cuello.dev — Personal portfolio",
         "description": "Personal site built with Astro and Tailwind, optimized for performance, accessibility and smooth animations.",
-        "link": "https://cuello.dev",
         "github": "https://github.com/adcuelloa/portfolio",
         "image": "/projects/cuello-dev.webp",
         "tags": [

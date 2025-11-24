@@ -1,5 +1,5 @@
 ---
-import { getLangFromUrl, useTranslations, getLocalizedPath } from "@/i18n";
+import { getLangFromUrl, useTranslations } from "@/i18n";
 
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
@@ -20,13 +20,6 @@ const currentYear = new Date().getFullYear();
     <ul
       class="flex flex-wrap items-center mt-3 text-sm font-medium dark:text-white/90 sm:mt-0"
     >
-      <li>
-        <a
-          href={getLocalizedPath(`/#${t("slugs.about")}`, lang)}
-          class="hover:underline me-4 md:me-6"
-          ><span data-i18n="footer.aboutLink">{t("footer.aboutLink")}</span></a
-        >
-      </li>
       <li>
         <a
           id="contacto"

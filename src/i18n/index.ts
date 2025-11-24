@@ -50,34 +50,3 @@ export function useTranslations(lang: keyof typeof ui) {
     return value as string;
   };
 }
-
-export function getLocalizedPath(path: string, lang: 'es' | 'en'): string {
-  const slugs = ui[lang].slugs as Record<string, string>;
-
-  // Traducir los anchors/hashes en la URL
-  let localizedPath = path;
-
-  // Map de slugs español -> clave
-  const slugMap: Record<string, string> = {
-    'experiencia': 'experience',
-    'proyectos': 'projects',
-    'sobre-mi': 'about',
-    'contacto': 'contact'
-  };
-
-  // Reemplazar cada slug en el path
-  Object.entries(slugMap).forEach(([esSlug, key]) => {
-    const translatedSlug = slugs[key];
-    localizedPath = localizedPath.replace(`#${esSlug}`, `#${translatedSlug}`);
-  });
-
-  // Si es inglés, agregar /en/ al inicio
-  if (lang === 'en' && !localizedPath.startsWith('/en')) {
-    if (localizedPath.startsWith('/')) {
-      return `/en${localizedPath}`;
-    }
-    return `/en/${localizedPath}`;
-  }
-
-  return localizedPath;
-}
