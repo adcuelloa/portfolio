@@ -25,15 +25,16 @@ const t = useTranslations(lang);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Primary Meta Tags -->
     <title>{title}</title>
-    <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="keywords" content={t("meta.keywords")} />
     <meta name="author" content={t("meta.author")} />
+
     <link rel="canonical" href={t("meta.canonicalUrl")} />
 
-    <!-- Open Graph / Facebook -->
+    <link rel="alternate" hreflang="es" href="https://cuello.dev/" />
+    <link rel="alternate" hreflang="en" href="https://cuello.dev/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://cuello.dev/" />
+
     <meta property="og:type" content="website" />
     <meta property="og:url" content={t("meta.ogUrl")} />
     <meta property="og:title" content={t("meta.ogTitle")} />
@@ -42,7 +43,6 @@ const t = useTranslations(lang);
     <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_US"} />
     <meta property="og:site_name" content="Andrés Cuello Portfolio" />
 
-    <!-- Twitter -->
     <meta property="twitter:card" content={t("meta.twitterCard")} />
     <meta property="twitter:url" content={t("meta.ogUrl")} />
     <meta property="twitter:title" content={t("meta.ogTitle")} />
@@ -54,10 +54,7 @@ const t = useTranslations(lang);
     <meta property="twitter:site" content={t("meta.twitterSite")} />
     <meta property="twitter:creator" content={t("meta.twitterSite")} />
 
-    <!-- Additional SEO -->
     <meta name="robots" content="index, follow" />
-    <meta name="language" content={lang === "es" ? "Spanish" : "English"} />
-    <meta name="revisit-after" content="7 days" />
 
     <ClientRouter />
   </head>

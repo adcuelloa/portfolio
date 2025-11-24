@@ -99,13 +99,12 @@
     "helpText": "If you think this is an error, please contact us and copy the URL."
   },
   "meta": {
-    "title": "Andrés's Portfolio - Web Developer",
-    "description": "Hire Andrés to create your web or mobile application. Web Developer. Specialized in creating unique applications.",
+    "title": "Andrés's Portfolio | Full Stack Web Developer",
+    "description": "Systems Engineer with 2+ years of experience. Building unique, fast, and scalable web applications using JavaScript, React, and Node.js.",
     "ogTitle": "Andrés Cuello - Full Stack Web Developer",
-    "ogDescription": "+2 years of experience developing web applications. Systems Engineer specialized in JavaScript, React, Node.js and Astro.",
-    "ogImage": "/og-image.jpg",
+    "ogDescription": "2+ years of experience crafting web solutions with the JS stack (React, Node.js). Specialized in high performance, Astro, and TypeScript.",
+    "ogImage": "/og-image-en.png",
     "ogUrl": "https://cuello.dev/en",
-    "keywords": "web developer, full stack, JavaScript, React, Node.js, Astro, portfolio, Andrés Cuello, web development",
     "author": "Andrés David Cuello Acosta",
     "twitterCard": "summary_large_image",
     "twitterSite": "@adcuelloa",
