@@ -103,7 +103,7 @@
     "description": "Ingeniero de Sistemas con +2 años de experiencia. Desarrollo de aplicaciones web únicas, rápidas y escalables con JavaScript, React y Node.js.",
     "ogTitle": "Andrés Cuello - Desarrollador Web Full Stack",
     "ogDescription": "+2 años de experiencia creando soluciones web con el stack JS (React, Node.js). Especializado en alto rendimiento, Astro y TypeScript.",
-    "ogImage": "/og-image-es.png",
+    "ogImage": "https://cuello.dev/og-image-es.png",
     "ogUrl": "https://cuello.dev",
     "author": "Andrés David Cuello Acosta",
     "twitterCard": "summary_large_image",
