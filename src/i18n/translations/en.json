@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "experience": "Experience",
+    "projects": "Projects",
+    "about": "About me",
+    "contact": "Contact"
+  },
+  "hero": {
+    "badge": "Available for work",
+    "greeting": "Hey, I'm Andrés!",
+    "description": "+2 years of experience. <strong>Systems Engineer</strong> specialized in developing unique web applications.",
+    "contactButton": "Contact me",
+    "linkedinButton": "LinkedIn"
+  },
+  "sections": {
+    "experienceTitle": "Work Experience",
+    "projectsTitle": "Projects",
+    "aboutTitle": "About me"
+  },
+  "experience": {
+    "learnMore": "Learn more",
+    "items": [
+      {
+        "date": "Currently...",
+        "title": "Webmaster & Infrastructure Administrator",
+        "company": "We Are Solutions, Inc.",
+        "description": "Responsible for managing and administering WordPress-based websites. Server maintenance and organizational infrastructure management (Google Workspace). Implementation of security improvements and web performance optimization."
+      },
+      {
+        "date": "March 2024 - September 2024",
+        "title": "Marketing Specialist",
+        "company": "We Are Solutions, Inc.",
+        "description": "Development and implementation of digital marketing strategies to increase company visibility and reach. Management of advertising campaigns on social media and digital platforms. Metrics analysis and content optimization to improve audience engagement."
+      }
+    ]
+  },
+  "projects": {
+    "codeButton": "Code",
+    "previewButton": "Preview",
+    "items": [
+      {
+        "title": "Ges2l — Modular management platform",
+        "description": "Modular platform to manage institutions, sports, budgets and more. Private monolith in production with PERN stack (Postgres, Express, React, Node), Vite apps, Astro landing page; validation with Zod, ORM with Sequelize, linters/formatting with ESLint + Prettier and custom CSS for styles.",
+        "link": "https://ges2l.com",
+        "image": "/projects/ges2l.webp",
+        "tags": [
+          "POSTGRES",
+          "EXPRESS",
+          "REACT",
+          "NODE",
+          "TAILWIND"
+        ]
+      },
+      {
+        "title": "Arduino Control Web — PWA for ESP32",
+        "description": "Web interface to control an ESP32 via WebSockets. Network optimizations for low latency, Access Point mode and UX focus for real-time control.",
+        "link": "http://arduino.andrescuello.com",
+        "github": "https://github.com/adcuelloa/ESP32-Control-Web",
+        "image": "/projects/arduino-control.webp",
+        "tags": [
+          "REACT",
+          "TAILWIND"
+        ]
+      },
+      {
+        "title": "Cuello.dev — Personal portfolio",
+        "description": "Personal site built with Astro and Tailwind, optimized for performance, accessibility and smooth animations.",
+        "link": "https://cuello.dev",
+        "github": "https://github.com/adcuelloa/portfolio",
+        "image": "/projects/cuello-dev.webp",
+        "tags": [
+          "ASTRO",
+          "TAILWIND"
+        ]
+      }
+    ]
+  },
+  "about": {
+    "imageAlt": "Andrés David",
+    "paragraphs": [
+      "I'm Andrés, a web developer in training and passionate about creating practical and well-built digital products. I started programming at a young age out of curiosity, and over time that exploration became my professional path.",
+      "I currently manage and optimize several websites for the same company, where I have worked on performance, security, SEO and automation of editorial workflows. I'm also focusing on becoming a <strong>modern full stack developer with JavaScript</strong>.",
+      "In parallel, I build personal projects —like Ges2l— that allow me to learn current technologies, explore architectures, and improve my skills to offer real and scalable solutions.",
+      "My goal is to establish myself as a full stack developer and continue creating projects that bring value to users and companies."
+    ]
+  },
+  "footer": {
+    "rights": "Almost all rights reserved",
+    "aboutLink": "About me",
+    "contactLink": "Contact"
+  },
+  "404": {
+    "title": "404 — Page not found",
+    "description": "The page you are looking for does not exist",
+    "heading": "404",
+    "message": "Sorry — the page you are looking for was not found.",
+    "submessage": "The URL may be wrong or the page no longer exists.",
+    "homeButton": "Back to home",
+    "contactButton": "Contact support",
+    "helpText": "If you think this is an error, please contact us and copy the URL."
+  },
+  "meta": {
+    "title": "Andrés's Portfolio - Web Developer",
+    "description": "Hire Andrés to create your web or mobile application. Web Developer. Specialized in creating unique applications.",
+    "ogTitle": "Andrés Cuello - Full Stack Web Developer",
+    "ogDescription": "+2 years of experience developing web applications. Systems Engineer specialized in JavaScript, React, Node.js and Astro.",
+    "ogImage": "/og-image.jpg",
+    "ogUrl": "https://cuello.dev/en",
+    "keywords": "web developer, full stack, JavaScript, React, Node.js, Astro, portfolio, Andrés Cuello, web development",
+    "author": "Andrés David Cuello Acosta",
+    "twitterCard": "summary_large_image",
+    "twitterSite": "@adcuelloa",
+    "canonicalUrl": "https://cuello.dev/en"
+  },
+  "slugs": {
+    "experience": "experience",
+    "projects": "projects",
+    "about": "about-me",
+    "contact": "contact"
+  }
+}

@@ -1,5 +1,10 @@
 ---
-const personalImageAlt = "Andrés David";
+import { getLangFromUrl, useTranslations, ui } from "@/i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const personalImageAlt = t("about.imageAlt");
+const paragraphs = ui[lang].about.paragraphs;
 ---
 
 <article
@@ -8,30 +13,7 @@ const personalImageAlt = "Andrés David";
   <div
     class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1"
   >
-    <p>
-      Soy Andrés, desarrollador web en formación y apasionado por crear
-      productos digitales prácticos y bien construidos. Empecé a programar desde
-      joven por curiosidad, y con el tiempo esa exploración se convirtió en mi
-      camino profesional.
-    </p>
-
-    <p>
-      Actualmente administro y optimizo varios sitios web de una misma empresa,
-      donde he trabajado en rendimiento, seguridad, SEO y automatización de
-      flujos editoriales. También estoy enfocándome en convertirme en
-      desarrollador <strong>full stack moderno con JavaScript</strong>.
-    </p>
-
-    <p>
-      Paralelamente construyo proyectos personales —como Ges2l— que me permiten
-      aprender tecnologías actuales, explorar arquitecturas, y mejorar mis
-      habilidades para ofrecer soluciones reales y escalables.
-    </p>
-
-    <p>
-      Mi objetivo es consolidarme como desarrollador full stack y seguir creando
-      proyectos que aporten valor a usuarios y empresas.
-    </p>
+    {paragraphs.map((paragraph) => <p set:html={paragraph} />)}
   </div>
 
   <img

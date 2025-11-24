@@ -5,6 +5,7 @@ import "@/styles/global.css";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { ClientRouter } from "astro:transitions";
+import { getLangFromUrl, useTranslations } from "@/i18n";
 
 interface Props {
   title: string;
@@ -12,17 +13,52 @@ interface Props {
 }
 
 const { description, title } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
     <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content={t("meta.keywords")} />
+    <meta name="author" content={t("meta.author")} />
+    <link rel="canonical" href={t("meta.canonicalUrl")} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={t("meta.ogUrl")} />
+    <meta property="og:title" content={t("meta.ogTitle")} />
+    <meta property="og:description" content={t("meta.ogDescription")} />
+    <meta property="og:image" content={new URL(t("meta.ogImage"), Astro.url)} />
+    <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_US"} />
+    <meta property="og:site_name" content="Andrés Cuello Portfolio" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content={t("meta.twitterCard")} />
+    <meta property="twitter:url" content={t("meta.ogUrl")} />
+    <meta property="twitter:title" content={t("meta.ogTitle")} />
+    <meta property="twitter:description" content={t("meta.ogDescription")} />
+    <meta
+      property="twitter:image"
+      content={new URL(t("meta.ogImage"), Astro.url)}
+    />
+    <meta property="twitter:site" content={t("meta.twitterSite")} />
+    <meta property="twitter:creator" content={t("meta.twitterSite")} />
+
+    <!-- Additional SEO -->
+    <meta name="robots" content="index, follow" />
+    <meta name="language" content={lang === "es" ? "Spanish" : "English"} />
+    <meta name="revisit-after" content="7 days" />
+
     <ClientRouter />
   </head>
 

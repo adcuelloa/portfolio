@@ -8,6 +8,10 @@ import Link from "./icons/Link.astro";
 import LinkButton from "./LinkButton.astro";
 import Postgres from "./icons/Postgres.astro";
 import NodeIcon from "./icons/Node.astro";
+import { getLangFromUrl, useTranslations, ui } from "@/i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 
 const TAGS = {
   TAILWIND: {
@@ -30,11 +34,6 @@ const TAGS = {
     class: "bg-[#371271] text-white",
     icon: AstroIcon,
   },
-  PRIVATE: {
-    name: "Monolito (privado)",
-    class: "bg-[#F59E0B] text-black",
-    icon: Link,
-  },
   POSTGRES: {
     name: "Postgres",
     class: "bg-[#0c4773] text-white",
@@ -45,43 +44,12 @@ const TAGS = {
     class: "bg-[#025100] text-white",
     icon: NodeIcon,
   },
-
 };
 
-const PROJECTS = [
-  {
-    title: "Ges2l — Plataforma modular para gestión",
-    description:
-      "Plataforma modular para administrar instituciones, deportes, presupuestos y más. Monolito privado en producción con stack PERN (Postgres, Express, React, Node), apps en Vite, landing en Astro; validación con Zod, ORM con Sequelize, linters/formateo con ESLint + Prettier y CSS propio para estilos.",
-    link: "https://ges2l.com",
-    image: "/projects/ges2l.webp",
-    tags: [
-      TAGS.POSTGRES,
-      TAGS.EXPRESS,
-      TAGS.REACT,
-      TAGS.NODE,
-      TAGS.TAILWIND,
-
-    ],
-  },
-  {
-    title: "Arduino Control Web — PWA para ESP32",
-    description:
-      "Interfaz web para controlar un ESP32 mediante WebSockets. Optimizaciones de red para baja latencia, modo Access Point y enfoque en UX para control en tiempo real.",
-    link: "http://arduino.andrescuello.com",
-    github: "https://github.com/adcuelloa/ESP32-Control-Web",
-    image: "/projects/arduino-control.webp",
-    tags: [TAGS.REACT, TAGS.TAILWIND],
-  },
-  {
-    title: "Cuello.dev — Portfolio personal",
-    description:
-      "Sitio personal construido con Astro y Tailwind, optimizado para rendimiento, accesibilidad y animaciones suaves.",
-    link: "https://cuello.dev",
-    image: "/projects/cuello-dev.webp",
-    tags: [TAGS.ASTRO, TAGS.TAILWIND],
-  },
-];
+const PROJECTS = ui[lang].projects.items.map((project) => ({
+  ...project,
+  tags: project.tags.map((tagKey) => TAGS[tagKey as keyof typeof TAGS]),
+}));
 ---
 
 <div class="flex flex-col gap-y-16">
@@ -105,7 +73,6 @@ const PROJECTS = [
           </h3>
 
           <div class="flex flex-wrap mt-2">
-            <!-- tags: saltan como unidades, no hacen wrap interno -->
             <ul class="flex flex-wrap mb-2 gap-x-2 gap-y-2">
               {tags.map((tag) => (
                 <li class="shrink-0">
@@ -128,13 +95,13 @@ const PROJECTS = [
               {github && (
                 <LinkButton href={github}>
                   <GitHub class="size-6" />
-                  Code
+                  {t("projects.codeButton")}
                 </LinkButton>
               )}
               {link && (
                 <LinkButton href={link}>
                   <Link class="size-4" />
-                  Preview
+                  {t("projects.previewButton")}
                 </LinkButton>
               )}
             </footer>

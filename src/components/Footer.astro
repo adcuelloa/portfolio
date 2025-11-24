@@ -1,4 +1,8 @@
 ---
+import { getLangFromUrl, useTranslations, getLocalizedPath } from "@/i18n";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 const currentYear = new Date().getFullYear();
 ---
 
@@ -11,19 +15,23 @@ const currentYear = new Date().getFullYear();
     <span class="text-sm sm:text-center text-zinc-800/90 dark:text-zinc-200/90"
       >&copy; {currentYear}
       <a href="https://cuello.dev/" class="hover:underline"> andrescuello </a>.
-      Casi todos los derechos reservados
+      {t("footer.rights")}
     </span>
     <ul
       class="flex flex-wrap items-center mt-3 text-sm font-medium dark:text-white/90 sm:mt-0"
     >
       <li>
-        <a href="/#sobre-mi" class="hover:underline me-4 md:me-6">Sobre mí</a>
+        <a
+          href={getLocalizedPath(`/#${t("slugs.about")}`, lang)}
+          class="hover:underline me-4 md:me-6"
+          ><span data-i18n="footer.aboutLink">{t("footer.aboutLink")}</span></a
+        >
       </li>
       <li>
         <a
           id="contacto"
           href="mailto:adcuelloa@gmail.com"
-          class="hover:underline">Contacto</a
+          class="hover:underline">{t("footer.contactLink")}</a
         >
       </li>
     </ul>

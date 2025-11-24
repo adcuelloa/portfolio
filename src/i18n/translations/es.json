@@ -1,0 +1,121 @@
+{
+  "nav": {
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "about": "Sobre mí",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "badge": "Disponible para trabajar",
+    "greeting": "Hey, soy Andrés!",
+    "description": "+2 años de experiencia. <strong>Ingeniero de Sistemas</strong> especializado en el desarrollo de aplicaciones web únicas.",
+    "contactButton": "Contáctame",
+    "linkedinButton": "LinkedIn"
+  },
+  "sections": {
+    "experienceTitle": "Experiencia laboral",
+    "projectsTitle": "Proyectos",
+    "aboutTitle": "Sobre mí"
+  },
+  "experience": {
+    "learnMore": "Saber más",
+    "items": [
+      {
+        "date": "Actualmente...",
+        "title": "Webmaster & Administrador de Infraestructura",
+        "company": "We Are Solutions, Inc.",
+        "description": "Responsable de la gestión y administración de sitios web basados en Wordpress. Mantenimiento de servidores y manejo de infraestructura organizacional (Google Workspace). Implementación de mejoras de seguridad y optimización del rendimiento web."
+      },
+      {
+        "date": "Marzo 2024 - Septiembre 2024",
+        "title": "Especialista de Marketing",
+        "company": "We Are Solutions, Inc.",
+        "description": "Desarrollo e implementación de estrategias de marketing digital para aumentar la visibilidad y el alcance de la empresa. Gestión de campañas publicitarias en redes sociales y plataformas digitales. Análisis de métricas y optimización de contenido para mejorar el engagement con la audiencia."
+      }
+    ]
+  },
+  "projects": {
+    "codeButton": "Código",
+    "previewButton": "Preview",
+    "items": [
+      {
+        "title": "Ges2l — Plataforma modular de gestión",
+        "description": "Plataforma modular para gestión de instituciones, deportes, presupuestos y más. Monolito privado en producción con stack PERN (Postgres, Express, React, Node), apps Vite, landing page Astro; validación con Zod, ORM con Sequelize, linters/formatting con ESLint + Prettier y CSS personalizado para estilos.",
+        "link": "https://ges2l.com",
+        "image": "/projects/ges2l.webp",
+        "tags": [
+          "POSTGRES",
+          "EXPRESS",
+          "REACT",
+          "NODE",
+          "TAILWIND"
+        ]
+      },
+      {
+        "title": "Arduino Control Web — PWA para ESP32",
+        "description": "Interfaz web para controlar un ESP32 vía WebSockets. Optimizaciones de red para baja latencia, modo Access Point y enfoque en UX para control en tiempo real.",
+        "link": "http://arduino.andrescuello.com",
+        "github": "https://github.com/adcuelloa/ESP32-Control-Web",
+        "image": "/projects/arduino-control.webp",
+        "tags": [
+          "REACT",
+          "TAILWIND"
+        ]
+      },
+      {
+        "title": "Cuello.dev — Portafolio personal",
+        "description": "Sitio personal construido con Astro y Tailwind, optimizado para rendimiento, accesibilidad y animaciones fluidas.",
+        "link": "https://cuello.dev",
+        "github": "https://github.com/adcuelloa/portfolio",
+        "image": "/projects/cuello-dev.webp",
+        "tags": [
+          "ASTRO",
+          "TAILWIND"
+        ]
+      }
+    ]
+  },
+  "about": {
+    "imageAlt": "Andrés David",
+    "paragraphs": [
+      "Soy Andrés, desarrollador web en formación y apasionado por crear productos digitales prácticos y bien construidos. Empecé a programar desde joven por curiosidad, y con el tiempo esa exploración se convirtió en mi camino profesional.",
+      "Actualmente administro y optimizo varios sitios web de una misma empresa, donde he trabajado en rendimiento, seguridad, SEO y automatización de flujos editoriales. También estoy enfocándome en convertirme en desarrollador <strong>full stack moderno con JavaScript</strong>.",
+      "Paralelamente construyo proyectos personales —como Ges2l— que me permiten aprender tecnologías actuales, explorar arquitecturas, y mejorar mis habilidades para ofrecer soluciones reales y escalables.",
+      "Mi objetivo es consolidarme como desarrollador full stack y seguir creando proyectos que aporten valor a usuarios y empresas."
+    ]
+  },
+  "footer": {
+    "rights": "Casi todos los derechos reservados",
+    "aboutLink": "Sobre mí",
+    "contactLink": "Contacto"
+  },
+  "404": {
+    "title": "404 — Página no encontrada",
+    "description": "La página que buscas no existe",
+    "heading": "404",
+    "message": "Lo sentimos — la página que buscas no se encontró.",
+    "submessage": "Puede que la URL esté mal o la página ya no exista.",
+    "homeButton": "Volver al inicio",
+    "contactButton": "Contactar soporte",
+    "helpText": "Si crees que esto es un error, por favor contáctanos y copia la URL."
+  },
+  "meta": {
+    "title": "Portafolio de Andrés - Desarrollador Web",
+    "description": "Contrata a Andrés para crear tu aplicación web o móvil. Desarrollador Web. Especializado en crear aplicaciones únicas.",
+    "ogTitle": "Andrés Cuello - Desarrollador Web Full Stack",
+    "ogDescription": "+2 años de experiencia desarrollando aplicaciones web. Ingeniero de Sistemas especializado en JavaScript, React, Node.js y Astro.",
+    "ogImage": "/og-image.jpg",
+    "ogUrl": "https://cuello.dev",
+    "keywords": "desarrollador web, full stack, JavaScript, React, Node.js, Astro, portafolio, Andrés Cuello, desarrollo web",
+    "author": "Andrés David Cuello Acosta",
+    "twitterCard": "summary_large_image",
+    "twitterSite": "@adcuelloa",
+    "canonicalUrl": "https://cuello.dev"
+  },
+  "slugs": {
+    "experience": "experiencia",
+    "projects": "proyectos",
+    "about": "sobre-mi",
+    "contact": "contacto"
+  }
+}

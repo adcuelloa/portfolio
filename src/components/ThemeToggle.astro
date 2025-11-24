@@ -3,23 +3,23 @@ import SunIcon from "./icons/Sun.astro";
 import MoonIcon from "./icons/Moon.astro";
 import SystemIcon from "./icons/System.astro";
 
-const THEMES = ["Light", "Dark", "System"];
+const THEMES = ["System", "Dark", "Light"];
 ---
 
 <div class="relative ml-1 mr-1">
   <button
     data-transition-persist
     id="theme-toggle-btn"
-    class="appearance-none border-none flex hover:scale-125 transition"
+    class="appearance-none border-none flex hover:scale-125 hover:cursor-pointer transition"
   >
     <span class="sr-only">Elige el tema</span>
+    <SystemIcon
+      id="system"
+      class="theme-toggle-icon absolute size-5 transition-all"
+    />
     <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
     <MoonIcon
       id="dark"
-      class="theme-toggle-icon absolute size-5 transition-all"
-    />
-    <SystemIcon
-      id="system"
       class="theme-toggle-icon absolute size-5 transition-all"
     />
   </button>
@@ -98,12 +98,35 @@ const THEMES = ["Light", "Dark", "System"];
     document.documentElement.classList[isDark ? "add" : "remove"]("dark");
   };
 
+  const updateActiveThemeInMenu = () => {
+    const currentTheme = getThemePreference();
+    document.querySelectorAll(".themes-menu-option").forEach((element) => {
+      const themeName = element.textContent.toLowerCase().trim();
+      if (themeName === currentTheme) {
+        element.classList.add("text-blue-500", "font-semibold");
+      } else {
+        element.classList.remove("text-blue-500", "font-semibold");
+      }
+    });
+  };
+
   updateTheme();
+  updateActiveThemeInMenu();
 
   document.addEventListener("click", () => themesMenu.classList.remove("open"));
 
   document.getElementById("theme-toggle-btn").addEventListener("click", (e) => {
     e.stopPropagation();
+
+    // Cerrar el menú de idiomas si está abierto
+    const languagesMenu = document.getElementById("languages-menu");
+    if (languagesMenu) {
+      languagesMenu.classList.remove("open");
+    }
+
+    // Actualizar opciones activas antes de abrir
+    updateActiveThemeInMenu();
+
     const isClosed = !themesMenu.classList.contains("open");
     themesMenu.classList[isClosed ? "add" : "remove"]("open");
   });
@@ -112,6 +135,7 @@ const THEMES = ["Light", "Dark", "System"];
     element.addEventListener("click", (e) => {
       localStorage.setItem("theme", e.target.innerText.toLowerCase().trim());
       updateTheme();
+      updateActiveThemeInMenu();
     });
   });
 
