@@ -39,7 +39,10 @@ const t = useTranslations(lang);
     <meta property="og:url" content={t("meta.ogUrl")} />
     <meta property="og:title" content={t("meta.ogTitle")} />
     <meta property="og:description" content={t("meta.ogDescription")} />
-    <meta property="og:image" content={t("meta.ogImage")} />
+    <meta
+      property="og:image"
+      content={`${import.meta.env.PUBLIC_SITE_URL}${t("meta.ogImage")}`}
+    />
     <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_US"} />
     <meta property="og:site_name" content="Andrés Cuello Portfolio" />
 
@@ -47,7 +50,10 @@ const t = useTranslations(lang);
     <meta property="twitter:url" content={t("meta.ogUrl")} />
     <meta property="twitter:title" content={t("meta.ogTitle")} />
     <meta property="twitter:description" content={t("meta.ogDescription")} />
-    <meta property="twitter:image" content={t("meta.ogImage")} />
+    <meta
+      property="twitter:image"
+      content={`${import.meta.env.PUBLIC_SITE_URL}${t("meta.ogImage")}`}
+    />
     <meta property="twitter:site" content={t("meta.twitterSite")} />
     <meta property="twitter:creator" content={t("meta.twitterSite")} />
 
