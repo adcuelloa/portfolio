@@ -10,7 +10,8 @@
     "greeting": "Hey, soy Andrés!",
     "description": "+2 años de experiencia. <strong>Ingeniero de Sistemas</strong> especializado en el desarrollo de aplicaciones web únicas.",
     "contactButton": "Contáctame",
-    "linkedinButton": "LinkedIn"
+    "linkedinButton": "LinkedIn",
+    "githubButton": "GitHub"
   },
   "sections": {
     "experienceTitle": "Experiencia laboral",

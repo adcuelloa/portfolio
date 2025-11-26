@@ -10,7 +10,8 @@
     "greeting": "Hey, I'm Andrés!",
     "description": "+2 years of experience. <strong>Systems Engineer</strong> specialized in developing unique web applications.",
     "contactButton": "Contact me",
-    "linkedinButton": "LinkedIn"
+    "linkedinButton": "LinkedIn",
+    "githubButton": "GitHub"
   },
   "sections": {
     "experienceTitle": "Work Experience",

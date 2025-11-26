@@ -1,6 +1,7 @@
 ---
 import Badge from "@/components/Badge.astro";
 import LinkedInIcon from "@/components/icons/LinkedIn.astro";
+import GitHubIcon from "@/components/icons/GitHub.astro";
 import MailIcon from "@/components/icons/Mail.astro";
 import SocialPill from "@/components/SocialPill.astro";
 import { getLangFromUrl, useTranslations } from "@/i18n";
@@ -43,6 +44,10 @@ const personalImageAlt = t("about.imageAlt");
     <SocialPill href="https://linkedin.com/in/adcuelloa">
       <LinkedInIcon class="size-4" />
       {t("hero.linkedinButton")}
+    </SocialPill>
+    <SocialPill href="https://github.com/adcuelloa">
+      <GitHubIcon class="size-4" />
+      {t("hero.githubButton")}
     </SocialPill>
   </nav>
 </div>
