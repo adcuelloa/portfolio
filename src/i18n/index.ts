@@ -2,21 +2,21 @@ import es from './translations/es.json';
 import en from './translations/en.json';
 
 export const languages = {
-  es: 'Español',
   en: 'English',
+  es: 'Español',
 };
 
-export const defaultLang = 'es';
+export const defaultLang = 'en';
 
 export const ui = {
   es,
   en,
 } as const;
 
-export function getBrowserLanguage(): 'es' | 'en' {
-  if (typeof navigator === 'undefined') return 'es';
+export function getBrowserLanguage(): 'en' | 'es' {
+  if (typeof navigator === 'undefined') return 'en';
   const browserLang = navigator.language || (navigator as any).userLanguage;
-  return browserLang.toLowerCase().startsWith('en') ? 'en' : 'es';
+  return browserLang.toLowerCase().startsWith('es') ? 'es' : 'en';
 }
 
 export function getLanguagePreference(): 'es' | 'en' {
@@ -24,14 +24,14 @@ export function getLanguagePreference(): 'es' | 'en' {
   return (localStorage.getItem('language') as 'es' | 'en') ?? defaultLang;
 }
 
-export function getCurrentLanguage(): 'es' | 'en' {
+export function getCurrentLanguage(): 'en' | 'es' {
   if (typeof window === 'undefined') return defaultLang;
-  return window.location.pathname.startsWith('/en') ? 'en' : 'es';
+  return window.location.pathname.startsWith('/es') ? 'es' : 'en';
 }
 
 export function getLangFromUrl(url: URL) {
   const pathname = url.pathname;
-  return pathname.startsWith('/en') ? 'en' : 'es';
+  return pathname.startsWith('/es') ? 'es' : 'en';
 }
 
 export function useTranslations(lang: keyof typeof ui) {

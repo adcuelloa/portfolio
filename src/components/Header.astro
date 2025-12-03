@@ -6,7 +6,7 @@ import { getLangFromUrl, useTranslations } from "@/i18n";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
-const basePath = lang === "en" ? "/en/" : "/";
+const basePath = lang === "es" ? "/es/" : "/";
 
 const navItems = [
   {
@@ -55,18 +55,27 @@ const navItems = [
 </header>
 
 <script>
-  document.addEventListener("astro:page-load", () => {
-    const sections = document.querySelectorAll("section");
-    const navItems = document.querySelectorAll("header nav a");
+  function setupIntersectionObserver() {
+    const sections = document.querySelectorAll("section[id]");
+    const navItems = document.querySelectorAll("header nav a[aria-label]");
 
-    const callback = (entries: any[]) => {
+    if (sections.length === 0 || navItems.length === 0) return;
+
+    // Get all valid section IDs
+    const sectionIds = new Set(Array.from(sections).map((s) => s.id));
+
+    const callback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           navItems.forEach((item) => {
-            if (item.getAttribute("aria-label") == entry.target.id) {
-              item.classList.add("text-blue-500");
-            } else {
-              item.classList.remove("text-blue-500");
+            const label = item.getAttribute("aria-label");
+            // Only toggle class if this link corresponds to a section
+            if (label && sectionIds.has(label)) {
+              if (label === entry.target.id) {
+                item.classList.add("text-blue-500");
+              } else {
+                item.classList.remove("text-blue-500");
+              }
             }
           });
         }
@@ -93,7 +102,13 @@ const navItems = [
         });
       }
     };
-  });
+  }
+
+  // Run on initial load
+  document.addEventListener("DOMContentLoaded", setupIntersectionObserver);
+
+  // Also run on Astro page transitions (if View Transitions are enabled)
+  document.addEventListener("astro:page-load", setupIntersectionObserver);
 </script>
 
 <style>

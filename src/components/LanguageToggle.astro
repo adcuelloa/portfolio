@@ -26,10 +26,10 @@ const slugsJson = JSON.stringify(slugsData);
   >
     <span class="sr-only">Cambiar idioma / Change language</span>
     {
-      currentLang === "es" ? (
-        <ColombiaFlag class="size-5 rounded-sm" />
-      ) : (
+      currentLang === "en" ? (
         <USAFlag class="size-5 rounded-sm" />
+      ) : (
+        <ColombiaFlag class="size-5 rounded-sm" />
       )
     }
   </button>
@@ -80,7 +80,7 @@ const slugsJson = JSON.stringify(slugsData);
   }
 
   const getLanguagePreference = () => {
-    return window.location.pathname.startsWith("/en") ? "en" : "es";
+    return window.location.pathname.startsWith("/es") ? "es" : "en";
   };
 
   const updateActiveLanguageInMenu = () => {
@@ -175,14 +175,14 @@ const slugsJson = JSON.stringify(slugsData);
 
       const currentPath = window.location.pathname;
       const currentHash = window.location.hash;
-      const currentLang = currentPath.startsWith("/en") ? "en" : "es";
+      const currentLang = currentPath.startsWith("/es") ? "es" : "en";
       let newPath = currentPath;
 
-      if (lang === "es") {
-        newPath = currentPath.replace(/^\/en(\/|$)/, "/");
-      } else if (lang === "en") {
-        if (!currentPath.startsWith("/en")) {
-          newPath = "/en" + (currentPath === "/" ? "/" : currentPath);
+      if (lang === "en") {
+        newPath = currentPath.replace(/^\/es(\/|$)/, "/");
+      } else if (lang === "es") {
+        if (!currentPath.startsWith("/es")) {
+          newPath = "/es" + (currentPath === "/" ? "/" : currentPath);
         }
       }
 
@@ -192,7 +192,7 @@ const slugsJson = JSON.stringify(slugsData);
       // Normalize path based on whether there's a hash
       if (translatedHash) {
         // Has hash: ensure path ends with /
-        if (newPath === "/" || newPath === "/en") {
+        if (newPath === "/" || newPath === "/es") {
           newPath = newPath + (newPath.endsWith("/") ? "" : "/");
         } else {
           // For other paths, ensure trailing slash
