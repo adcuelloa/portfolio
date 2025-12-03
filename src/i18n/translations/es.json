@@ -105,11 +105,11 @@
     "ogTitle": "Andrés Cuello - Desarrollador Web Full Stack",
     "ogDescription": "Desarrollador full stack especializado en el stack PERN y en la creación de sitios ultra rápidos con Astro. Experiencia construyendo aplicaciones web modernas con JavaScript y React.",
     "ogImage": "/og-image-es.png",
-    "ogUrl": "https://cuello.dev",
+    "ogUrl": "https://cuello.dev/es",
     "author": "Andrés David Cuello Acosta",
     "twitterCard": "summary_large_image",
     "twitterSite": "@adcuelloa",
-    "canonicalUrl": "https://cuello.dev"
+    "canonicalUrl": "https://cuello.dev/es"
   },
   "slugs": {
     "experience": "experiencia",
