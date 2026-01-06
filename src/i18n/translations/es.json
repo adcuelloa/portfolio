@@ -8,7 +8,7 @@
   "hero": {
     "badge": "Disponible para trabajar",
     "greeting": "Hey, soy Andrés!",
-    "description": "+2 años de experiencia. <strong>Ingeniero de Sistemas</strong> especializado en el desarrollo de aplicaciones web únicas.",
+    "description": "+3 años de experiencia. <strong>Ingeniero de Sistemas</strong> especializado en arquitectura de software y sistemas escalables.",
     "contactButton": "Contáctame",
     "linkedinButton": "LinkedIn",
     "githubButton": "GitHub"
@@ -23,15 +23,15 @@
     "items": [
       {
         "date": "Actualmente...",
-        "title": "Webmaster & Administrador de Infraestructura",
+        "title": "Ingeniero de Infraestructura y Web Lead",
         "company": "We Are Solutions, Inc.",
-        "description": "Responsable de la gestión y administración de sitios web basados en Wordpress. Mantenimiento de servidores y manejo de infraestructura organizacional (Google Workspace). Implementación de mejoras de seguridad y optimización del rendimiento web."
+        "description": "Responsable de la arquitectura y mantenimiento de infraestructura web de alto rendimiento. Especializado en optimización de Core Web Vitals, implementación de protocolos de seguridad avanzada (DMARC, SPF, DKIM) y gestión de entornos de servidor escalables bajo Google Workspace."
       },
       {
         "date": "Marzo 2024 - Septiembre 2024",
-        "title": "Especialista de Marketing",
+        "title": "Especialista en Estrategia Digital y Analítica Web",
         "company": "We Are Solutions, Inc.",
-        "description": "Desarrollo e implementación de estrategias de marketing digital para aumentar la visibilidad y el alcance de la empresa. Gestión de campañas publicitarias en redes sociales y plataformas digitales. Análisis de métricas y optimización de contenido para mejorar el engagement con la audiencia."
+        "description": "Implementación técnica de estrategias de crecimiento digital. Responsable del análisis de métricas de usuario, optimización de conversión (CRO) y configuración técnica de herramientas de rastreo. Enfoque en la mejora de la visibilidad orgánica mediante SEO técnico y estructuración de datos."
       }
     ]
   },
@@ -40,8 +40,8 @@
     "previewButton": "Preview",
     "items": [
       {
-        "title": "Ges2l — Plataforma modular de gestión",
-        "description": "Plataforma modular para gestión de instituciones, deportes, presupuestos y más. Monolito privado en producción con stack PERN (Postgres, Express, React, Node), apps Vite, landing page Astro; validación con Zod, ORM con Sequelize, linters/formatting con ESLint + Prettier y CSS personalizado para estilos.",
+        "title": "Ges2l — Ecosistema ERP Modular Multi-tenant",
+        "description": "Plataforma escalable diseñada para gestión institucional y contable. Arquitectura basada en un Monorepo (Turborepo) con Nginx como Proxy Inverso para servir múltiples SPAs. Implementé gestión de sesiones con Redis (HttpOnly cookies) y un motor complejo de RBAC. Migración activa a TypeScript.",
         "link": "https://ges2l.com",
         "image": "/projects/ges2l.webp",
         "tags": [
@@ -49,7 +49,9 @@
           "EXPRESS",
           "REACT",
           "NODE",
-          "TAILWIND"
+          "REDIS",
+          "NGINX",
+          "TS"
         ]
       },
       {
@@ -78,10 +80,10 @@
   "about": {
     "imageAlt": "Andrés David",
     "paragraphs": [
-      "Soy Andrés, desarrollador web en formación y apasionado por crear productos digitales prácticos y bien construidos. Empecé a programar desde joven por curiosidad, y con el tiempo esa exploración se convirtió en mi camino profesional.",
-      "Actualmente administro y optimizo varios sitios web de una misma empresa, donde he trabajado en rendimiento, seguridad, SEO y automatización de flujos editoriales. También estoy enfocándome en convertirme en desarrollador <strong>full stack moderno con JavaScript</strong>.",
-      "Paralelamente construyo proyectos personales —como Ges2l— que me permiten aprender tecnologías actuales, explorar arquitecturas, y mejorar mis habilidades para ofrecer soluciones reales y escalables.",
-      "Mi objetivo es consolidarme como desarrollador full stack y seguir creando proyectos que aporten valor a usuarios y empresas."
+      "Soy Andrés, Ingeniero de Sistemas apasionado por la creación de productos digitales robustos y arquitecturas bien construidas. Mi enfoque combina el desarrollo Full Stack moderno con una sólida base en gestión de infraestructura y seguridad.",
+      "Actualmente lidero la optimización de ecosistemas web complejos, trabajando en rendimiento crítico, seguridad de red y automatización de flujos de trabajo de nivel empresarial.",
+      "A través de proyectos como Ges2l, exploro soluciones de alta escalabilidad, implementando tecnologías como Redis para persistencia de datos y Nginx para orquestación de servicios, garantizando productos finales seguros y de alto rendimiento.",
+      "Mi objetivo es aportar valor a empresas internacionales mediante el desarrollo de software de calidad y la gestión eficiente de infraestructura en la nube."
     ]
   },
   "footer": {
@@ -100,9 +102,9 @@
     "helpText": "Si crees que esto es un error, por favor contáctanos y copia la URL."
   },
   "meta": {
-    "title": "Portafolio de Andrés Cuello | Desarrollador Web Full Stack",
+    "title": "Portafolio de Andrés Cuello | Ingeniero de Software Full Stack",
     "description": "Ingeniero de Sistemas con +2 años de experiencia. Desarrollo de aplicaciones web únicas, rápidas y escalables con JavaScript, React y Node.js.",
-    "ogTitle": "Andrés Cuello - Desarrollador Web Full Stack",
+    "ogTitle": "Andrés Cuello - Ingeniero de Software Full Stack",
     "ogDescription": "Desarrollador full stack especializado en el stack PERN y en la creación de sitios ultra rápidos con Astro. Experiencia construyendo aplicaciones web modernas con JavaScript y React.",
     "ogImage": "/og-image-es.png",
     "ogUrl": "https://cuello.dev/es",
