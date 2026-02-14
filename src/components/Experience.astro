@@ -1,9 +1,8 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
-import { getLangFromUrl, useTranslations, ui } from "@/i18n";
+import { getLangFromUrl, ui } from "@/i18n";
 
 const lang = getLangFromUrl(Astro.url);
-const t = useTranslations(lang);
 const EXPERIENCE = ui[lang].experience.items;
 ---
 
