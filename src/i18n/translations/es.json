@@ -42,7 +42,7 @@
       {
         "title": "Ges2l — Ecosistema ERP Modular Multi-tenant",
         "description": "Plataforma escalable diseñada para gestión institucional y contable. Arquitectura basada en un Monorepo (Turborepo) con Nginx como Proxy Inverso para servir múltiples SPAs. Implementé gestión de sesiones con Redis (HttpOnly cookies) y un motor complejo de RBAC. Migración activa a TypeScript.",
-        "link": "https://ges2l.com",
+        "link": "https://panel.ges2l.com",
         "image": "/projects/ges2l.webp",
         "tags": [
           "POSTGRES",
@@ -51,28 +51,13 @@
           "NODE",
           "REDIS",
           "NGINX",
-          "TS"
-        ]
-      },
-      {
-        "title": "Arduino Control Web — PWA para ESP32",
-        "description": "Interfaz web para controlar un ESP32 vía WebSockets. Optimizaciones de red para baja latencia, modo Access Point y enfoque en UX para control en tiempo real.",
-        "link": "http://arduino.andrescuello.com",
-        "github": "https://github.com/adcuelloa/ESP32-Control-Web",
-        "image": "/projects/arduino-control.webp",
-        "tags": [
-          "REACT",
-          "TAILWIND"
-        ]
-      },
-      {
-        "title": "Cuello.dev — Portafolio personal",
-        "description": "Sitio personal construido con Astro y Tailwind, optimizado para rendimiento, accesibilidad y animaciones fluidas.",
-        "github": "https://github.com/adcuelloa/portfolio",
-        "image": "/projects/cuello-dev.webp",
-        "tags": [
+          "TS",
+          "VITE",
+          "TAILWIND",
           "ASTRO",
-          "TAILWIND"
+          "DOCKER",
+          "TURBOREPO",
+          "DRIZZLE"
         ]
       }
     ]

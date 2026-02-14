@@ -1,8 +1,8 @@
 ---
-import GitHub from "./icons/GitHub.astro";
+import AstroIcon from "./icons/AstroIcon.astro";
 import Tailwind from "./icons/Tailwind.astro";
 import ReactIcon from "./icons/React.astro";
-import AstroIcon from "./icons/AstroIcon.astro";
+import Vite from "./icons/Vite.astro";
 import Express from "./icons/Express.astro";
 import Link from "./icons/Link.astro";
 import LinkButton from "./LinkButton.astro";
@@ -11,6 +11,9 @@ import NodeIcon from "./icons/Node.astro";
 import TSIcon from "./icons/TypeScript.astro";
 import RedisIcon from "./icons/Redis.astro";
 import NginxIcon from "./icons/Nginx.astro";
+import DockerIcon from "./icons/Docker.astro";
+import TurboIcon from "./icons/Turbo.astro";
+import DrizzleIcon from "./icons/Drizzle.astro";
 import { getLangFromUrl, useTranslations, ui } from "@/i18n";
 
 const lang = getLangFromUrl(Astro.url);
@@ -37,6 +40,11 @@ const TAGS = {
     class: "bg-[#371271] text-white",
     icon: AstroIcon,
   },
+  VITE: {
+    name: "Vite",
+    class: "bg-[#002d4c] text-white",
+    icon: Vite,
+  },
   POSTGRES: {
     name: "Postgres",
     class: "bg-[#0c4773] text-white",
@@ -62,6 +70,21 @@ const TAGS = {
     class: "bg-[#005520] text-white",
     icon: NginxIcon,
   },
+  DOCKER: {
+    name: "Docker",
+    class: "bg-[#003d6a] text-white",
+    icon: DockerIcon,
+  },
+  TURBOREPO: {
+    name: "Turborepo",
+    class: "bg-[#002d4c] text-white",
+    icon: TurboIcon,
+  },
+  DRIZZLE: {
+    name: "Drizzle",
+    class: "bg-[#002d4c] text-white",
+    icon: DrizzleIcon,
+  },
 };
 
 const PROJECTS = ui[lang].projects.items.map((project) => ({
@@ -72,13 +95,13 @@ const PROJECTS = ui[lang].projects.items.map((project) => ({
 
 <div class="flex flex-col gap-y-16">
   {
-    PROJECTS.map(({ image, title, description, tags, link, github }) => (
+    PROJECTS.map(({ image, title, description, tags, link }) => (
       <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
         <div class="w-full md:w-1/2">
           <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
             <img
               alt={title}
-              class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105"
+              class="object-cover object-top w-full h-56 transition duration-500 sm:h-auto md:scale-110 md:group-hover:scale-105"
               loading="lazy"
               src={image}
             />
@@ -109,12 +132,6 @@ const PROJECTS = ui[lang].projects.items.map((project) => ({
             </div>
 
             <footer class="flex items-end justify-start mt-4 gap-x-4">
-              {github && (
-                <LinkButton href={github}>
-                  <GitHub class="size-6" />
-                  {t("projects.codeButton")}
-                </LinkButton>
-              )}
               {link && (
                 <LinkButton href={link}>
                   <Link class="size-4" />
