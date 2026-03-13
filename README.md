@@ -2,7 +2,7 @@
 
 <div align="center">
 <a href="https://cuello.dev/">
-<img src="./public/portfolio.webp">
+<img src="https://cdn.cuello.dev/portfolio.webp">
 </a>
 </div>
 

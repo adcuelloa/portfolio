@@ -43,7 +43,7 @@
         "title": "Ges2l — Ecosistema ERP Modular Multi-tenant",
         "description": "Plataforma escalable diseñada para gestión institucional y contable. Arquitectura basada en un Monorepo (Turborepo) con Nginx como Proxy Inverso para servir múltiples SPAs. Implementé gestión de sesiones con Redis (HttpOnly cookies) y un motor complejo de RBAC. Migración activa a TypeScript.",
         "link": "https://panel.ges2l.com",
-        "image": "/projects/ges2l.webp",
+        "image": "https://cdn.cuello.dev/ges2l.webp",
         "tags": [
           "POSTGRES",
           "EXPRESS",
@@ -91,7 +91,7 @@
     "description": "Ingeniero de Sistemas con +2 años de experiencia. Desarrollo de aplicaciones web únicas, rápidas y escalables con JavaScript, React y Node.js.",
     "ogTitle": "Andrés Cuello - Ingeniero de Software Full Stack",
     "ogDescription": "Desarrollador full stack especializado en el stack PERN y en la creación de sitios ultra rápidos con Astro. Experiencia construyendo aplicaciones web modernas con JavaScript y React.",
-    "ogImage": "/og-image-es.png",
+    "ogImage": "https://cdn.cuello.dev/og-image-es.png",
     "ogUrl": "https://cuello.dev/es",
     "author": "Andrés David Cuello Acosta",
     "twitterCard": "summary_large_image",
