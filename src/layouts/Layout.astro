@@ -29,6 +29,9 @@ const ogImageUrl = `https://cdn.cuello.dev/cdn-cgi/image/width=1200,height=630,f
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
+    <link rel="preconnect" href="https://cdn.cuello.dev" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.cuello.dev" />
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={t("meta.author")} />
@@ -58,15 +61,21 @@ const ogImageUrl = `https://cdn.cuello.dev/cdn-cgi/image/width=1200,height=630,f
     <meta name="robots" content="index, follow" />
 
     <link
+      rel="preload"
       href="https://assets.calendly.com/assets/external/widget.css"
-      rel="stylesheet"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+    </noscript>
+
     <script
       is:inline
       defer
       src="https://assets.calendly.com/assets/external/widget.js"
       type="text/javascript"
-      async></script>
+    ></script>
   </head>
 
   <body class="relative text-black dark:text-white">
