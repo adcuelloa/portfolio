@@ -72,147 +72,106 @@ const slugsJson = JSON.stringify(slugsData);
   }
 </style>
 
-<script>
-  const languagesMenu = document.getElementById("languages-menu");
-  let languageToggleBtn = document.getElementById("language-toggle-btn");
-  if (!languageToggleBtn) {
-    languageToggleBtn = document.querySelector("#language-toggle-btn");
-  }
+<script is:inline>
+  (function() {
+    const languagesMenu = document.getElementById("languages-menu");
+    let languageToggleBtn = document.getElementById("language-toggle-btn");
 
-  const getLanguagePreference = () => {
-    return window.location.pathname.startsWith("/es") ? "es" : "en";
-  };
+    // Función para manejar el toggle
+    const toggleLanguageMenu = () => {
+      const themesMenu = document.getElementById("themes-menu");
+      if (themesMenu) themesMenu.classList.remove("open");
 
-  const updateActiveLanguageInMenu = () => {
-    const currentLang = getLanguagePreference();
-    document.querySelectorAll(".languages-menu-option").forEach((element) => {
-      const lang = element.getAttribute("data-lang");
-      if (lang === currentLang) {
-        element.classList.add("text-blue-500", "font-semibold");
-      } else {
-        element.classList.remove("text-blue-500", "font-semibold");
-      }
-    });
-  };
+      const currentLang = window.location.pathname.startsWith("/es") ? "es" : "en";
 
-  document.addEventListener("click", () =>
-    languagesMenu?.classList.remove("open")
-  );
-
-  const toggleLanguageMenu = () => {
-    const themesMenu = document.getElementById("themes-menu");
-    if (themesMenu) {
-      themesMenu.classList.remove("open");
-    }
-
-    updateActiveLanguageInMenu();
-
-    const isClosed = !languagesMenu?.classList.contains("open");
-    languagesMenu?.classList[isClosed ? "add" : "remove"]("open");
-    if (languageToggleBtn)
-      languageToggleBtn.setAttribute("aria-expanded", String(isClosed));
-  };
-
-  if (languageToggleBtn) {
-    languageToggleBtn.addEventListener("click", function (e) {
-      if (e && typeof e.stopPropagation === "function") e.stopPropagation();
-      toggleLanguageMenu();
-    });
-  }
-
-  // Reattach after swaps in case Astro replaces the node
-  document.addEventListener("astro:after-swap", () => {
-    const btn = document.getElementById("language-toggle-btn");
-    if (btn && btn !== languageToggleBtn) {
-      languageToggleBtn = btn;
-      languageToggleBtn.addEventListener("click", toggleLanguageMenu);
-    }
-  });
-
-  // Get slugs from data attribute
-  const toggleWrapper = document.querySelector("[data-slugs]");
-  const slugsData = toggleWrapper
-    ? JSON.parse(toggleWrapper.getAttribute("data-slugs") || "{}")
-    : {};
-
-  // Helper to translate hash between languages
-  // @ts-ignore - Parameters inferred from runtime usage
-  const translateHash = (hash, fromLang, toLang) => {
-    if (!hash || !hash.startsWith("#")) return "";
-
-    const hashValue = hash.substring(1); // Remove #
-    const fromSlugs = slugsData[fromLang] || {};
-    const toSlugs = slugsData[toLang] || {};
-
-    // Find which key maps to the current hash in the source language
-    const matchingKey = Object.keys(fromSlugs).find(
-      (key) => fromSlugs[key] === hashValue
-    );
-
-    // If found, return the translation; otherwise return the original hash
-    if (matchingKey && toSlugs[matchingKey]) {
-      return "#" + toSlugs[matchingKey];
-    }
-
-    return hash; // Keep original if no translation found
-  };
-
-  // Use event delegation on the menu so listeners survive Astro DOM swaps
-  if (languagesMenu) {
-    languagesMenu.addEventListener("click", (e) => {
-      // prevent the document click handler from closing the menu before we run
-      if (e && typeof e.stopPropagation === "function") e.stopPropagation();
-
-      const target = e.target;
-      const el = target instanceof Element ? target : null;
-      const option = el ? el.closest(".languages-menu-option") : null;
-      if (!option) return;
-
-      const lang = option.getAttribute("data-lang");
-      if (!lang) return;
-
-      localStorage.setItem("language", lang);
-
-      const currentPath = window.location.pathname;
-      const currentHash = window.location.hash;
-      const currentLang = currentPath.startsWith("/es") ? "es" : "en";
-      let newPath = currentPath;
-
-      if (lang === "en") {
-        newPath = currentPath.replace(/^\/es(\/|$)/, "/");
-      } else if (lang === "es") {
-        if (!currentPath.startsWith("/es")) {
-          newPath = "/es" + (currentPath === "/" ? "/" : currentPath);
-        }
-      }
-
-      // Translate the hash to the new language
-      const translatedHash = translateHash(currentHash, currentLang, lang);
-
-      // Normalize path based on whether there's a hash
-      if (translatedHash) {
-        // Has hash: ensure path ends with /
-        if (newPath === "/" || newPath === "/es") {
-          newPath = newPath + (newPath.endsWith("/") ? "" : "/");
+      document.querySelectorAll(".languages-menu-option").forEach((element) => {
+        const lang = element.getAttribute("data-lang");
+        if (lang === currentLang) {
+          element.classList.add("text-blue-500", "font-semibold");
         } else {
-          // For other paths, ensure trailing slash
-          if (!newPath.endsWith("/")) {
-            newPath = newPath + "/";
+          element.classList.remove("text-blue-500", "font-semibold");
+        }
+      });
+
+      const isClosed = !languagesMenu?.classList.contains("open");
+      languagesMenu?.classList[isClosed ? "add" : "remove"]("open");
+      if (languageToggleBtn)
+        languageToggleBtn.setAttribute("aria-expanded", String(isClosed));
+    };
+
+    // Inicializar listeners
+    if (languageToggleBtn) {
+      languageToggleBtn.addEventListener("click", (e) => {
+        if (e && e.stopPropagation) e.stopPropagation();
+        toggleLanguageMenu();
+      });
+    }
+
+    document.addEventListener("click", () => languagesMenu?.classList.remove("open"));
+
+    // Lógica de navegación y traducción de hashes
+    const toggleWrapper = document.querySelector("[data-slugs]");
+    const slugsData = toggleWrapper ? JSON.parse(toggleWrapper.getAttribute("data-slugs") || "{}") : {};
+
+    if (languagesMenu) {
+      languagesMenu.addEventListener("click", (e) => {
+        if (e && e.stopPropagation) e.stopPropagation();
+
+        const target = e.target;
+        const option = target.closest(".languages-menu-option");
+        if (!option) return;
+
+        const lang = option.getAttribute("data-lang");
+        if (!lang) return;
+
+        localStorage.setItem("language", lang);
+
+        const currentPath = window.location.pathname;
+        const currentHash = window.location.hash;
+        const currentLang = currentPath.startsWith("/es") ? "es" : "en";
+        let newPath = currentPath;
+
+        if (lang === "en") {
+          newPath = currentPath.replace(/^\/es(\/|$)/, "/");
+        } else if (lang === "es") {
+          if (!currentPath.startsWith("/es")) {
+            newPath = "/es" + (currentPath === "/" ? "/" : currentPath);
           }
         }
-      } else {
-        // No hash: remove trailing slash (except for root)
-        if (newPath !== "/" && newPath.endsWith("/")) {
+
+        // Traducir hash
+        let translatedHash = currentHash;
+        if (currentHash && currentHash.startsWith("#")) {
+          const hashValue = currentHash.substring(1);
+          const fromSlugs = slugsData[currentLang] || {};
+          const toSlugs = slugsData[lang] || {};
+          const matchingKey = Object.keys(fromSlugs).find(key => fromSlugs[key] === hashValue);
+          if (matchingKey && toSlugs[matchingKey]) {
+            translatedHash = "#" + toSlugs[matchingKey];
+          }
+        }
+
+        // Normalizar trailing slashes
+        if (translatedHash) {
+          if (!newPath.endsWith("/")) newPath += "/";
+        } else if (newPath !== "/" && newPath.endsWith("/")) {
           newPath = newPath.slice(0, -1);
         }
+
+        window.location.href = (newPath || "/") + translatedHash;
+      });
+    }
+
+    // Soporte para Astro View Transitions
+    document.addEventListener("astro:after-swap", () => {
+      const btn = document.getElementById("language-toggle-btn");
+      if (btn) {
+        languageToggleBtn = btn;
+        languageToggleBtn.addEventListener("click", (e) => {
+          if (e && e.stopPropagation) e.stopPropagation();
+          toggleLanguageMenu();
+        });
       }
-
-      if (newPath === "") newPath = "/";
-
-      // Build final URL
-      const finalUrl = newPath + translatedHash;
-
-      window.location.href = finalUrl;
     });
-  }
+  })();
 </script>
