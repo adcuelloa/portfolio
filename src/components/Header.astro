@@ -8,6 +8,8 @@ const t = useTranslations(lang);
 
 const basePath = lang === "es" ? "/es/" : "/";
 
+const calendlyScript = 'Calendly.initPopupWidget({url: "https://calendly.com/adcuelloa/schedule"}); return false;';
+
 const navItems = [
   {
     title: t("nav.experience"),
@@ -27,7 +29,8 @@ const navItems = [
   {
     title: t("nav.contact"),
     label: t("slugs.contact"),
-    url: "mailto:adcuelloa@gmail.com",
+    url: "#",
+    onclick: calendlyScript,
   },
 ];
 ---
@@ -44,6 +47,7 @@ const navItems = [
           class="relative block px-2 py-2 transition hover:text-blue-500 dark:hover:text-blue-500"
           aria-label={link.label}
           href={link.url}
+          onclick={link.onclick}
         >
           {link.title}
         </a>

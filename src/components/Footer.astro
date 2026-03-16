@@ -4,6 +4,8 @@ import { getLangFromUrl, useTranslations } from "@/i18n";
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 const currentYear = new Date().getFullYear();
+
+const calendlyScript = 'Calendly.initPopupWidget({url: "https://calendly.com/adcuelloa/schedule"}); return false;';
 ---
 
 <footer
@@ -21,9 +23,12 @@ const currentYear = new Date().getFullYear();
       <li>
         <a
           id="contacto"
-          href="mailto:adcuelloa@gmail.com"
-          class="hover:underline">{t("footer.contactLink")}</a
+          href="#"
+          onclick={calendlyScript}
+          class="hover:underline"
         >
+          {t("footer.contactLink")}
+        </a>
       </li>
     </ul>
   </div>
