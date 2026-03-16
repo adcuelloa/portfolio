@@ -130,47 +130,42 @@ const ogImageUrl = `https://cdn.cuello.dev/cdn-cgi/image/width=1200,height=630,f
       }
 
       #header-nav {
-        animation: blur linear both 0.5s;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        border: 1px solid transparent; /* El borde siempre existe, solo es invisible al inicio */
+
+        /* Configuración de la animación */
+        animation: blur linear both;
         animation-timeline: scroll();
         animation-range: 0 500px;
       }
 
       @keyframes blur {
+        from {
+          border-color: rgba(0, 0, 0, 0);
+          background-color: rgba(255, 255, 255, 0);
+        }
         to {
           backdrop-filter: blur(20px);
-          border-width: 1px;
-          border-color: rgba(0, 0, 0);
-          padding: 0.25rem 0.75rem;
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          background-color: rgb(229, 229, 229);
-          border-radius: 9999px;
+          border-color: rgba(0, 0, 0, 0.1);
+          background-color: rgba(229, 229, 229, 0.7);
         }
       }
 
       @media (prefers-color-scheme: dark) {
         @keyframes blur {
           from {
-            border: 0px;
+            border-color: rgba(255, 255, 255, 0);
+            background-color: rgba(0, 0, 0, 0);
           }
           to {
-            box-shadow:
-              0px 5px 50px -5px rgba(0, 0, 0, 0.1),
-              0px 0px 0 1px rgba(0, 0, 0, 0.3);
-            background: rgba(0, 0, 0, 0.3);
             backdrop-filter: blur(20px);
-            border-width: 1px;
-            border-color: rgba(0, 0, 0);
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            padding-top: 0.25rem;
-            padding-bottom: 0.25rem;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
+            border-color: rgba(255, 255, 255, 0.1);
             background-color: rgba(0, 0, 0, 0.3);
-            border-radius: 9999px;
+            box-shadow: 0px 5px 50px -5px rgba(0, 0, 0, 0.1), 0px 0px 0 1px rgba(0, 0, 0, 0.3);
           }
         }
       }
