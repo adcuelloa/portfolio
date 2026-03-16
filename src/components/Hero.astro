@@ -1,9 +1,10 @@
 ---
-import Badge from "@/components/Badge.astro";
-import LinkedInIcon from "@/components/icons/LinkedIn.astro";
-import GitHubIcon from "@/components/icons/GitHub.astro";
-import MailIcon from "@/components/icons/Mail.astro";
-import SocialPill from "@/components/SocialPill.astro";
+import Badge from "./Badge.astro";
+import LinkedInIcon from "./icons/LinkedIn.astro";
+import GitHubIcon from "./icons/GitHub.astro";
+import MailIcon from "./icons/Mail.astro";
+import SocialPill from "./SocialPill.astro";
+import CdnImage from "./CdnImage.astro";
 import { getLangFromUrl, useTranslations } from "@/i18n";
 
 const lang = getLangFromUrl(Astro.url);
@@ -16,10 +17,12 @@ const calendly =
 
 <div class="max-w-xl">
   <div class="flex gap-4 mb-4 items-center">
-    <img
-      class="rounded-full shadow-lg size-16"
-      src="https://cdn.cuello.dev/adcuelloa.webp"
+    <CdnImage
+      src="adcuelloa.webp"
       alt={personalImageAlt}
+      width={64}
+      height={64}
+      class="rounded-full shadow-lg size-16"
     />
     <a
       href=""

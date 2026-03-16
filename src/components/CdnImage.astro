@@ -1,0 +1,31 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width: number;
+  height?: number;
+  class?: string;
+  loading?: "lazy" | "eager";
+}
+
+const { src, alt, width, height, class: className, loading = "lazy" } = Astro.props;
+
+const getUrl = (w: number) => {
+  const baseUrl = "https://cdn.cuello.dev/cdn-cgi/image";
+  const cleanSrc = src.startsWith('/') ? src.slice(1) : src;
+  return `${baseUrl}/width=${w},format=auto,quality=85/${cleanSrc}`;
+};
+
+const imgUrl = getUrl(width);
+const imgUrl2x = getUrl(width * 2);
+---
+
+<img
+  src={imgUrl}
+  srcset={`${imgUrl} 1x, ${imgUrl2x} 2x`}
+  alt={alt}
+  width={width}
+  height={height}
+  class={className}
+  loading={loading}
+/>

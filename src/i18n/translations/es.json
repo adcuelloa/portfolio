@@ -43,7 +43,7 @@
         "title": "Ges2l — Ecosistema ERP Modular Multi-tenant",
         "description": "Plataforma escalable diseñada para gestión institucional y contable. Arquitectura basada en un Monorepo (Turborepo) con Nginx como Proxy Inverso para servir múltiples SPAs. Implementé gestión de sesiones con Redis (HttpOnly cookies) y un motor complejo de RBAC. Migración activa a TypeScript.",
         "link": "https://panel.ges2l.com",
-        "image": "https://cdn.cuello.dev/ges2l.webp",
+        "image": "ges2l.webp",
         "tags": [
           "POSTGRES",
           "EXPRESS",
