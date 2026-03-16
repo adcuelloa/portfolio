@@ -14,6 +14,11 @@ interface Props {
 const { description, title } = Astro.props;
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+const ogImageFilename = t("meta.ogImage");
+
+// Force jpeg and exact size 1200x630
+const ogImageUrl = `https://cdn.cuello.dev/cdn-cgi/image/width=1200,height=630,fit=crop,format=jpeg/${ogImageFilename}`;
 ---
 
 <!doctype html>
@@ -38,10 +43,7 @@ const t = useTranslations(lang);
     <meta property="og:url" content={t("meta.ogUrl")} />
     <meta property="og:title" content={t("meta.ogTitle")} />
     <meta property="og:description" content={t("meta.ogDescription")} />
-    <meta
-      property="og:image"
-      content={`${import.meta.env.PUBLIC_SITE_URL}${t("meta.ogImage")}`}
-    />
+    <meta property="og:image" content={ogImageUrl} />
     <meta property="og:locale" content={lang === "es" ? "es_ES" : "en_US"} />
     <meta property="og:site_name" content="Andrés Cuello Portfolio" />
 
@@ -49,10 +51,7 @@ const t = useTranslations(lang);
     <meta property="twitter:url" content={t("meta.ogUrl")} />
     <meta property="twitter:title" content={t("meta.ogTitle")} />
     <meta property="twitter:description" content={t("meta.ogDescription")} />
-    <meta
-      property="twitter:image"
-      content={`${import.meta.env.PUBLIC_SITE_URL}${t("meta.ogImage")}`}
-    />
+    <meta property="twitter:image" content={ogImageUrl} />
     <meta property="twitter:site" content={t("meta.twitterSite")} />
     <meta property="twitter:creator" content={t("meta.twitterSite")} />
 

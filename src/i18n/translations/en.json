@@ -91,7 +91,7 @@
     "description": "Systems Engineer with 2+ years of experience. Building unique, fast, and scalable web applications using JavaScript, React, and Node.js.",
     "ogTitle": "Andrés Cuello - Full Stack Software Engineer",
     "ogDescription": "Full stack developer specialized in the PERN stack and in building ultra-fast sites with Astro. Experienced in creating modern web applications using JavaScript and React.",
-    "ogImage": "https://cdn.cuello.dev/og-image-en.png",
+    "ogImage": "og-image-en.png",
     "ogUrl": "https://cuello.dev",
     "author": "Andrés David Cuello Acosta",
     "twitterCard": "summary_large_image",
