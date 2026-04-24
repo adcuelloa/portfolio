@@ -1,3 +1,10 @@
-onlyBuiltDependencies:
-  - esbuild
-  - sharp
+minimumReleaseAge: 1440
+
+minimumReleaseAgeExclude:
+  - Astro
+
+allowBuilds:
+  esbuild: true
+  msw: true
+  sharp: true
+  workerd: true

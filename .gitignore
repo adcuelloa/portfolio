@@ -19,4 +19,16 @@ pnpm-debug.log*
 
 # macOS-specific files
 .DS_Store
-bun.*
+
+# jetbrains setting folder
+.idea/
+
+# pnpm store
+.pnpm-store/
+
+# wrangler deploy metadata (local)
+.wrangler/
+
+# Playwright local artifacts
+.playwright/
+.playwright-mcp/

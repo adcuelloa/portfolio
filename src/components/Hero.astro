@@ -4,7 +4,7 @@ import LinkedInIcon from "./icons/LinkedIn.astro";
 import GitHubIcon from "./icons/GitHub.astro";
 import MailIcon from "./icons/Mail.astro";
 import SocialPill from "./SocialPill.astro";
-import CdnImage from "./CdnImage.astro";
+import { Image } from "astro:assets";
 import { getLangFromUrl, useTranslations } from "@/i18n";
 
 const lang = getLangFromUrl(Astro.url);
@@ -17,13 +17,16 @@ const calendly =
 
 <div class="max-w-xl">
   <div class="flex gap-4 mb-4 items-center">
-    <CdnImage
-      src="adcuelloa.webp"
+    <Image
+      src="https://cdn.cuello.dev/adcuelloa.webp"
       alt={personalImageAlt}
       width={64}
       height={64}
-      class="rounded-full shadow-lg size-16"
+      densities={[1, 2]}
+      quality={85}
+      format="webp"
       loading="eager"
+      class="rounded-full shadow-lg size-16"
     />
     <a
       href=""

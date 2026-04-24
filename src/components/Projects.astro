@@ -1,5 +1,5 @@
 ---
-import CdnImage from './CdnImage.astro';
+import { Image } from "astro:assets";
 import AstroIcon from "./icons/AstroIcon.astro";
 import Tailwind from "./icons/Tailwind.astro";
 import ReactIcon from "./icons/React.astro";
@@ -90,8 +90,9 @@ const TAGS = {
 
 const PROJECTS = ui[lang].projects.items.map((project) => ({
   ...project,
-  tags: project.tags.map((tagKey) => TAGS[tagKey as keyof typeof TAGS])
-  .filter(Boolean),
+  tags: project.tags
+    .map((tagKey) => TAGS[tagKey as keyof typeof TAGS])
+    .filter(Boolean),
 }));
 ---
 
@@ -101,7 +102,7 @@ const PROJECTS = ui[lang].projects.items.map((project) => ({
       <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
         <div class="w-full md:w-1/2">
           <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-            <CdnImage
+            <Image
               src={image}
               alt={title}
               width={430}
