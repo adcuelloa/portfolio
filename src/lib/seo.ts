@@ -26,9 +26,9 @@ export type SeoMeta = {
 
 export const ogLocales: Record<Locale, string> = { en: "en_US", es: "es_CO" };
 
-/** Social preview images already hosted on the CDN, rendered at 1200×630 by Cloudflare. */
+/** Social preview cards on the CDN (1200×630 masters), delivered as JPEG through Cloudflare. */
 export function defaultOgImage(lang: Locale): string {
-  return `${SITE.cdnUrl}/cdn-cgi/image/width=1200,height=630,fit=cover,format=jpeg,quality=85/images/social/og-image-${lang}.png`;
+  return `${SITE.cdnUrl}/cdn-cgi/image/width=1200,height=630,fit=cover,format=jpeg,quality=85/images/social/og-home-${lang}.png`;
 }
 
 /** Serializes JSON-LD safely: `<` is escaped so content can never close the script element. */
@@ -96,5 +96,18 @@ export function blogPostingSchema(data: {
     inLanguage: data.lang,
     keywords: data.tags.join(", "),
     author: { "@id": personId, "@type": "Person", name: SITE.name, url: SITE.url },
+  };
+}
+
+export function breadcrumbSchema(items: Array<{ name: string; url: string }>): StructuredData {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: item.url,
+    })),
   };
 }

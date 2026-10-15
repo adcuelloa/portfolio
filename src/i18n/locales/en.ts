@@ -141,6 +141,13 @@ export default {
       newTab: "opens in a new tab",
     },
   },
+  caseStudy: {
+    eyebrow: "Case study",
+    titleSuffix: "case study",
+    back: "All work",
+    linksLabel: "Links",
+    home: "Home",
+  },
   writing: {
     title: "Writing",
     lead: "Articles on Astro, Cloudflare, technical SEO and web performance.",

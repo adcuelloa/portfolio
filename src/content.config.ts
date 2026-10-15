@@ -34,6 +34,8 @@ const projects = defineCollection({
       imageSource: z.string().optional(),
       /** The screenshot shows sample data (e.g. a marketing mock-up); a visible disclaimer is rendered. */
       illustrativeMockup: z.boolean().default(false),
+      /** Meta description for the case-study page (required by the SEO audit once the entry has a body). */
+      seoDescription: z.string().min(110).max(160).optional(),
       featured: z.boolean().default(false),
       order: z.number().int(),
     })

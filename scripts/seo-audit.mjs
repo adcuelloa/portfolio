@@ -33,6 +33,18 @@ for (const locale of ["en", "es"]) {
     check(page, seo.title, seo.description);
   }
 
+  // Case studies: projects with a body become pages and need search-length metadata.
+  const caseSuffix = locale === "es" ? "caso de estudio" : "case study";
+  const projectDir = join(root, "src/content/projects", locale);
+  for (const file of readdirSync(projectDir).filter((f) => f.endsWith(".md"))) {
+    const source = readFileSync(join(projectDir, file), "utf8");
+    const [, frontmatter = "", body = ""] = source.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/) ?? [];
+    if (!body.trim()) continue;
+    const title = frontmatter.match(/^title:\s*(.*)$/m)?.[1]?.replace(/^["']|["']$/g, "") ?? "";
+    const description = frontmatter.match(/^seoDescription:\s*(.*)$/m)?.[1]?.replace(/^["']|["']$/g, "") ?? "";
+    check(`case study ${file}`, `${title}: ${caseSuffix} — Andrés Cuello`, description);
+  }
+
   const dir = join(root, "src/content/articles", locale);
   const files = existsSync(dir)
     ? readdirSync(dir).filter((f) => /\.mdx?$/.test(f) && statSync(join(dir, f)).isFile())

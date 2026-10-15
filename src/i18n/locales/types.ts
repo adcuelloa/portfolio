@@ -113,6 +113,13 @@ export interface Translations {
       newTab: string;
     };
   };
+  caseStudy: {
+    eyebrow: string;
+    titleSuffix: string;
+    back: string;
+    linksLabel: string;
+    home: string;
+  };
   writing: {
     title: string;
     lead: string;

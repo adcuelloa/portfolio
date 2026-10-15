@@ -1,0 +1,16 @@
+---
+import type { GetStaticPaths } from "astro";
+
+import { entrySlug, getProjects, hasCaseStudy } from "@/lib/content";
+import CaseStudyPage from "@/views/CaseStudyPage.astro";
+
+// Only projects with a written case study get a page; the rest stay on the home index.
+export const getStaticPaths = (async () => {
+  const projects = (await getProjects("es")).filter(hasCaseStudy);
+  return projects.map((project) => ({ params: { slug: entrySlug(project) }, props: { project } }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+---
+
+<CaseStudyPage project={project} />

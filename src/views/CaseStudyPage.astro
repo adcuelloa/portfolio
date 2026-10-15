@@ -1,0 +1,130 @@
+---
+import { Image } from "astro:assets";
+import { getCollection, render, type CollectionEntry } from "astro:content";
+
+import ExternalLink from "@/components/ui/ExternalLink.astro";
+import KindBadge from "@/components/ui/KindBadge.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { localizedPath, otherLocale, sectionHref, type Alternate } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/utils";
+import { caseStudyPath, entryLocale, entrySlug, hasCaseStudy } from "@/lib/content";
+import { breadcrumbSchema } from "@/lib/seo";
+import { SITE } from "@/lib/site";
+
+interface Props {
+  project: CollectionEntry<"projects">;
+}
+
+const { project } = Astro.props;
+const { data } = project;
+const lang = entryLocale(project);
+const t = useTranslations(lang);
+const site = Astro.site ?? new URL(SITE.url);
+const url = new URL(caseStudyPath(project), site).href;
+
+// The translation is the entry with the same file name in the other locale folder.
+const other = otherLocale(lang);
+const translation = (await getCollection("projects", (e) => entryLocale(e) === other)).find(
+  (e) => entrySlug(e) === entrySlug(project) && hasCaseStudy(e),
+);
+const alternates: Alternate[] = translation
+  ? [
+      { hreflang: lang, href: url },
+      { hreflang: other, href: new URL(caseStudyPath(translation), site).href },
+    ]
+  : [];
+
+const statusLabel = data.status
+  ? { live: t("common.status.live"), development: t("common.status.development"), experimental: t("common.status.experimental") }[data.status]
+  : undefined;
+
+const workHref = sectionHref(lang, "work");
+const { Content } = await render(project);
+---
+
+<BaseLayout
+  seo={{
+    title: `${data.title}: ${t("caseStudy.titleSuffix")} — ${SITE.name}`,
+    description: data.seoDescription ?? data.summary,
+    alternates,
+    structuredData: [
+      breadcrumbSchema([
+        { name: t("caseStudy.home"), url: new URL(localizedPath(lang, "home"), site).href },
+        { name: data.title, url },
+      ]),
+    ],
+  }}
+  languageHref={translation ? caseStudyPath(translation) : undefined}
+>
+  <article class="mx-auto flex w-full max-w-[1200px] flex-col gap-12 px-4 pt-14 pb-24 sm:px-8 sm:pt-20 lg:px-12">
+    <header class="grid gap-10 lg:grid-cols-12">
+      <div class="flex flex-col gap-6 lg:col-span-8">
+        <a href={workHref} class="eyebrow self-start no-underline hover:text-accent-ink">← {t("caseStudy.back")}</a>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="eyebrow pr-2">{t("caseStudy.eyebrow")}</span>
+          <KindBadge kind={data.kind} lang={lang} />
+          {statusLabel && <span class="kind kind-neutral">{statusLabel}</span>}
+        </div>
+        <h1 class="text-[2.75rem] leading-[1.02] font-bold tracking-[-0.032em] sm:text-[4rem]">{data.title}</h1>
+        <p class="max-w-[60ch] text-[1.1875rem] leading-relaxed text-ink-2">{data.summary}</p>
+      </div>
+
+      <dl class="flex flex-col gap-5 self-end rounded-xl border border-line bg-surface p-6 text-[0.9375rem] lg:col-span-4">
+        <div>
+          <dt class="eyebrow">{t("home.work.statusLabel")}</dt>
+          <dd class="mt-1 leading-relaxed">{data.statusNote}</dd>
+        </div>
+        <div>
+          <dt class="eyebrow">{t("home.work.builtLabel")}</dt>
+          <dd class="mt-1 font-mono text-[0.8125rem] leading-relaxed text-ink-2">{data.stack.join(" · ")}</dd>
+        </div>
+        {
+          (data.links.live || data.links.repository) && (
+            <div>
+              <dt class="eyebrow">{t("caseStudy.linksLabel")}</dt>
+              <dd class="flex flex-wrap gap-x-6">
+                {data.links.live && <ExternalLink href={data.links.live}>{t("common.links.visit")}</ExternalLink>}
+                {data.links.repository && <ExternalLink href={data.links.repository}>{t("common.links.repository")}</ExternalLink>}
+              </dd>
+            </div>
+          )
+        }
+      </dl>
+    </header>
+
+    {
+      data.image && data.imageAlt && (
+        <figure class="flex flex-col gap-3">
+          <div class="overflow-hidden rounded-xl border border-line bg-surface">
+            <Image
+              src={data.image}
+              alt={data.imageAlt}
+              width={1440}
+              height={900}
+              widths={[720, 960, 1440]}
+              sizes="(min-width: 1200px) 1104px, 100vw"
+              loading="eager"
+              fetchpriority="high"
+              class="aspect-[16/10] h-auto w-full object-cover object-top"
+            />
+          </div>
+          <figcaption class="flex flex-col gap-1.5">
+            <span class="eyebrow">{t("home.work.screenshotOf")} {data.imageSource}</span>
+            {data.illustrativeMockup && (
+              <span class="flex gap-2 text-[0.8125rem] leading-relaxed text-muted">
+                <span aria-hidden="true" class="font-mono text-accent-ink">*</span>
+                {t("home.work.mockupNote")}
+              </span>
+            )}
+          </figcaption>
+        </figure>
+      )
+    }
+
+    <div class="grid lg:grid-cols-12">
+      <div class="prose-article flex flex-col gap-5 text-[1.0625rem] leading-[1.75] text-ink-2 lg:col-span-8 lg:col-start-3">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>

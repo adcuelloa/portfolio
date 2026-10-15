@@ -141,6 +141,13 @@ export default {
       newTab: "se abre en una pestaña nueva",
     },
   },
+  caseStudy: {
+    eyebrow: "Caso de estudio",
+    titleSuffix: "caso de estudio",
+    back: "Todos los proyectos",
+    linksLabel: "Enlaces",
+    home: "Inicio",
+  },
   writing: {
     title: "Artículos",
     lead: "Artículos sobre Astro, Cloudflare, SEO técnico y rendimiento web.",
