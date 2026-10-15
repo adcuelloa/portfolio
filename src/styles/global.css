@@ -234,6 +234,28 @@
   }
 }
 
+/*
+  Theme switch: the new theme is revealed by an expanding circle (animated from the toggle script);
+  the old snapshot blurs out underneath. Header/footer keep their client-router names during page
+  navigation, but are folded into the root snapshot here so the circle reveals them too.
+*/
+:root[data-theme-transition] [data-astro-transition-scope] {
+  view-transition-name: none !important;
+}
+:root[data-theme-transition]::view-transition-old(root) {
+  animation: theme-blur-out 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  z-index: -1;
+}
+:root[data-theme-transition]::view-transition-new(root) {
+  animation: none;
+}
+@keyframes theme-blur-out {
+  to {
+    opacity: 0;
+    filter: blur(12px);
+  }
+}
+
 /* Client-router transitions: Astro's default cross-fade, disabled for visitors who prefer reduced motion. */
 @media (prefers-reduced-motion: reduce) {
   ::view-transition-group(*),
