@@ -28,7 +28,7 @@ export const ogLocales: Record<Locale, string> = { en: "en_US", es: "es_CO" };
 
 /** Social preview images already hosted on the CDN, rendered at 1200×630 by Cloudflare. */
 export function defaultOgImage(lang: Locale): string {
-  return `${SITE.cdnUrl}/cdn-cgi/image/width=1200,height=630,fit=cover,format=jpeg,quality=85/og-image-${lang}.png`;
+  return `${SITE.cdnUrl}/cdn-cgi/image/width=1200,height=630,fit=cover,format=jpeg,quality=85/images/social/og-image-${lang}.png`;
 }
 
 /** Serializes JSON-LD safely: `<` is escaped so content can never close the script element. */
@@ -52,7 +52,7 @@ export function personSchema(lang: Locale, description: string): StructuredData 
     name: SITE.name,
     alternateName: SITE.fullName,
     url: SITE.url,
-    image: `${SITE.cdnUrl}/me.webp`,
+    image: `${SITE.cdnUrl}/images/profile/andres-cuello.webp`,
     jobTitle: lang === "es" ? "Desarrollador web" : "Web Engineer",
     description,
     knowsLanguage: ["es", "en"],
