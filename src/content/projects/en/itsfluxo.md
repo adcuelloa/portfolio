@@ -19,6 +19,7 @@ featured: true
 order: 1
 seoDescription: "Marketing site for a Colombian business offering websites, content, Meta Ads and automations: prerendered Astro on Cloudflare Workers, bilingual and fast."
 ---
+
 ## Context
 
 ItsFluxo sells websites, content, Meta Ads and automations to businesses in Colombia. The site has to load quickly on mobile, rank for local searches and turn visits into booked calls, without a CMS or a heavy JavaScript framework.
@@ -27,7 +28,7 @@ ItsFluxo sells websites, content, Meta Ads and automations to businesses in Colo
 
 - **Prerendered pages** for home, services, results, process, contact, a blog and the legal documents, fully bilingual: Spanish at the root and every page in English under `/en`, linked with reciprocal hreflang. Legal texts live in an Astro content collection.
 - **A contact endpoint on demand.** Everything is static except `/api/contact`, which runs on Cloudflare Workers, checks a Cloudflare Turnstile token and sends the message through Resend. Secrets stay in the Worker runtime.
-- **Consent first.** Cookie preferences use Vanilla CookieConsent in Spanish, and the Meta Pixel loads only after the visitor accepts the *Marketing* category.
+- **Consent first.** Cookie preferences use Vanilla CookieConsent in Spanish, and the Meta Pixel loads only after the visitor accepts the _Marketing_ category.
 - **Motion with restraint.** Simple reveals use CSS scroll-driven animations with a `prefers-reduced-motion` fallback. GSAP is reserved for the more complex sequences, with cleanup on every client-router navigation.
 - **Images from R2** (`cdn.itsfluxo.com`) through Cloudflare image transformations, plus a sitemap and JSON-LD from a small SEO helper.
 

@@ -20,18 +20,18 @@ every push to `main` runs `pnpm run build` and `npx wrangler deploy`. Images are
 
 ## Commands
 
-| Command | What it does |
-| --- | --- |
-| `pnpm dev` | Local dev server |
-| `pnpm build` | `astro check`, production build to `dist/`, then the CSP audit |
-| `pnpm preview` | Preview the production build |
-| `pnpm deploy` | Build and deploy with Wrangler (normally done by Workers Builds) |
-| `pnpm wrangler:types` | Regenerate Worker runtime types |
-| `pnpm i18n:audit` | Translation keys: unknown, missing or unused |
-| `pnpm seo:audit` | Title/description lengths and brand spelling |
+| Command               | What it does                                                     |
+| --------------------- | ---------------------------------------------------------------- |
+| `pnpm dev`            | Local dev server                                                 |
+| `pnpm build`          | `astro check`, production build to `dist/`, then the CSP audit   |
+| `pnpm preview`        | Preview the production build                                     |
+| `pnpm deploy`         | Build and deploy with Wrangler (normally done by Workers Builds) |
+| `pnpm wrangler:types` | Regenerate Worker runtime types                                  |
+| `pnpm i18n:audit`     | Translation keys: unknown, missing or unused                     |
+| `pnpm seo:audit`      | Title/description lengths and brand spelling                     |
 | `pnpm hreflang:audit` | Canonical, hreflang, `lang` and sitemap checks on the built HTML |
-| `pnpm csp:audit` | Every inline script is allowed by a hash in `public/_headers` |
-| `pnpm verify` | All audits plus the build |
+| `pnpm csp:audit`      | Every inline script is allowed by a hash in `public/_headers`    |
+| `pnpm verify`         | All audits plus the build                                        |
 
 When an inline script changes, `pnpm build` fails and prints the new `sha256-…` hash to add to the
 `script-src` directive in `public/_headers`.

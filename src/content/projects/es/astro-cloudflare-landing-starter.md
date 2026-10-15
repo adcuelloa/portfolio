@@ -9,6 +9,7 @@ links:
 order: 4
 seoDescription: "Plantilla de código abierto de Astro, estática primero, para landing pages bilingües en Cloudflare, con i18n tipado, SEO, imágenes en CDN y auditorías."
 ---
+
 ## Contexto
 
 Después de construir varios sitios bilingües en Astro sobre Cloudflare, repetía siempre la misma base: traducciones, rutas localizadas, metadatos, entrega de imágenes y analítica con consentimiento. Esta plantilla empaqueta esa base para que una landing nueva arranque desde algo correcto.

@@ -68,7 +68,8 @@ export default {
       lead: "Each project is labelled for what it is: employment, an independent project or open source. Screenshots come from the public live sites.",
       screenshotOf: "Screenshot of",
       statusLabel: "Status",
-      mockupNote: "The dashboard in this screenshot is an illustrative mock-up on the public marketing site, not data from an institution using the platform.",
+      mockupNote:
+        "The dashboard in this screenshot is an illustrative mock-up on the public marketing site, not data from an institution using the platform.",
       builtLabel: "Built with",
       more: "More engineering work",
     },

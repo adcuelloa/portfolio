@@ -9,6 +9,7 @@ links:
 order: 5
 seoDescription: "RoveLink: control de robots de baja latencia desde el navegador, de código abierto, con un relay en Cloudflare Workers y Durable Objects hasta un ESP32."
 ---
+
 ## Contexto
 
 Manejar un robot pequeño por internet normalmente implica abrir puertos o exponer el dispositivo. RoveLink evita ambas cosas: el navegador y el ESP32 abren cada uno un WebSocket saliente hacia un relay, y el relay solo reenvía mensajes entre ellos.

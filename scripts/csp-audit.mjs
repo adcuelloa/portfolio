@@ -42,10 +42,18 @@ const stale = [...declared].filter((hash) => !required.has(hash));
 if (missing.length > 0) {
   console.error(
     `❌ CSP audit failed. Add these hashes to script-src in public/_headers:\n${missing
-      .map(([hash, pages]) => `  'sha256-${hash}' (${[...pages].slice(0, 3).join(", ")}${pages.size > 3 ? ", …" : ""})`)
-      .join("\n")}`,
+      .map(
+        ([hash, pages]) =>
+          `  'sha256-${hash}' (${[...pages].slice(0, 3).join(", ")}${pages.size > 3 ? ", …" : ""})`
+      )
+      .join("\n")}`
   );
   process.exit(1);
 }
-if (stale.length > 0) console.info(`Stale CSP hashes (safe to remove):\n${stale.map((h) => `  'sha256-${h}'`).join("\n")}`);
-console.info(`✅ CSP audit passed: ${required.size} inline script hash${required.size === 1 ? "" : "es"}.`);
+if (stale.length > 0)
+  console.info(
+    `Stale CSP hashes (safe to remove):\n${stale.map((h) => `  'sha256-${h}'`).join("\n")}`
+  );
+console.info(
+  `✅ CSP audit passed: ${required.size} inline script hash${required.size === 1 ? "" : "es"}.`
+);

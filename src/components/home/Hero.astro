@@ -25,56 +25,46 @@ const facts = [
   aria-labelledby="hero-title"
   class="mx-auto w-full max-w-300 px-4 pt-14 pb-20 sm:px-8 sm:pt-24 sm:pb-28 lg:px-12"
 >
-  <div
-    class="grid items-end gap-12 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-16"
-  >
+  <div class="grid items-end gap-12 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-16">
     <div class="flex flex-col gap-7">
-      <p
-        class="inline-flex items-center gap-2 self-start rounded-full bg-accent-soft px-3 py-1.5 font-mono text-[0.8125rem] text-accent-ink"
-      >
-        <span aria-hidden="true" class="size-2 rounded-full bg-accent"></span>
+      <p class="bg-accent-soft text-accent-ink inline-flex items-center gap-2 self-start rounded-full px-3 py-1.5 font-mono text-[0.8125rem]">
+        <span aria-hidden="true" class="bg-accent size-2 rounded-full"></span>
         {t("home.hero.availability")}
       </p>
       <h1
         id="hero-title"
         class="max-w-[17ch] text-[2.5rem] leading-[1.04] font-bold tracking-[-0.032em] text-balance sm:text-[3.5rem] lg:text-[4.5rem]"
       >
-        {t("home.hero.titleBefore")}<span class="mark"
-          >{t("home.hero.titleMark")}</span
-        >{t("home.hero.titleAfter")}
+        {t("home.hero.titleBefore")}
+        <span class="mark">{t("home.hero.titleMark")}</span>
+        {t("home.hero.titleAfter")}
       </h1>
-      <p
-        class="max-w-[62ch] text-[1.0625rem] leading-relaxed text-ink-2 sm:text-[1.1875rem]"
-      >
+      <p class="text-ink-2 max-w-[62ch] text-[1.0625rem] leading-relaxed sm:text-[1.1875rem]">
         {t("home.hero.lead")}
       </p>
       <div class="flex flex-wrap gap-3">
         <a
           href={sectionHref(lang, "work")}
-          class="inline-flex min-h-12 items-center rounded-lg bg-ink px-5 font-medium text-paper no-underline hover:bg-ink-2"
+          class="bg-ink text-paper hover:bg-ink-2 inline-flex min-h-12 items-center rounded-lg px-5 font-medium no-underline"
         >
           {t("home.hero.ctaPrimary")}
         </a>
         <a
           href={sectionHref(lang, "contact")}
-          class="inline-flex min-h-12 items-center rounded-lg px-5 font-medium text-ink no-underline ring-1 ring-line-strong ring-inset hover:bg-surface"
+          class="text-ink ring-line-strong hover:bg-surface inline-flex min-h-12 items-center rounded-lg px-5 font-medium no-underline ring-1 ring-inset"
         >
           {t("home.hero.ctaSecondary")}
         </a>
       </div>
     </div>
 
-    <dl
-      class="grid gap-x-6 gap-y-5 rounded-xl border border-line bg-surface p-6 text-[0.9375rem] sm:grid-cols-3 lg:grid-cols-1"
-    >
-      {
-        facts.map((fact) => (
-          <div>
-            <dt class="eyebrow">{fact.label}</dt>
-            <dd class="mt-1">{fact.value}</dd>
-          </div>
-        ))
-      }
+    <dl class="border-line bg-surface grid gap-x-6 gap-y-5 rounded-xl border p-6 text-[0.9375rem] sm:grid-cols-3 lg:grid-cols-1">
+      {facts.map((fact) => (
+        <div>
+          <dt class="eyebrow">{fact.label}</dt>
+          <dd class="mt-1">{fact.value}</dd>
+        </div>
+      ))}
       <div>
         <dt class="eyebrow">{t("home.hero.facts.stackLabel")}</dt>
         <dd class="mt-1">{t("home.hero.facts.stackValue")}</dd>

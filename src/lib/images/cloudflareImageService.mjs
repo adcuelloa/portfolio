@@ -26,7 +26,8 @@ function normalizeSource(src, baseUrl) {
   try {
     const base = new URL(baseUrl);
     const url = new URL(source, base);
-    if (url.origin === base.origin) return encodeURI(`${url.pathname}${url.search}`).replace(/^\/+/, "");
+    if (url.origin === base.origin)
+      return encodeURI(`${url.pathname}${url.search}`).replace(/^\/+/, "");
     return encodeURI(url.href);
   } catch {
     return encodeURI(source).replace(/^\/+/, "");
@@ -68,8 +69,18 @@ const service = {
     const { width, height } = dimensions(options);
     const attributes = { ...options };
     for (const key of [
-      "src", "width", "height", "format", "quality", "widths", "densities",
-      "layout", "priority", "fit", "position", "background",
+      "src",
+      "width",
+      "height",
+      "format",
+      "quality",
+      "widths",
+      "densities",
+      "layout",
+      "priority",
+      "fit",
+      "position",
+      "background",
     ]) {
       delete attributes[key];
     }

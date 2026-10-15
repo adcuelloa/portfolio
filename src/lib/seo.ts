@@ -36,7 +36,7 @@ export function jsonLdScript(items: ReadonlyArray<StructuredData>): string {
   return items
     .map(
       (item) =>
-        `<script type="application/ld+json">${JSON.stringify(item).replace(/</g, "\\u003c")}</script>`,
+        `<script type="application/ld+json">${JSON.stringify(item).replace(/</g, "\\u003c")}</script>`
     )
     .join("");
 }

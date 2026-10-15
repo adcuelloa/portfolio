@@ -1,9 +1,9 @@
 ---
 import { getCollection, render, type CollectionEntry } from "astro:content";
 
-import BaseLayout from "@/layouts/BaseLayout.astro";
 import { localizedPath, otherLocale, type Alternate } from "@/i18n/routes";
 import { useTranslations } from "@/i18n/utils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { articlePath, entryLocale, entrySlug } from "@/lib/content";
 import { blogPostingSchema } from "@/lib/seo";
 import { SITE } from "@/lib/site";
@@ -22,10 +22,7 @@ const url = new URL(articlePath(article), site).href;
 // A translation is the published entry with the same file name in the other locale folder.
 const other = otherLocale(lang);
 const translation = (
-  await getCollection(
-    "articles",
-    (e) => entryLocale(e) === other && !e.data.draft,
-  )
+  await getCollection("articles", (e) => entryLocale(e) === other && !e.data.draft)
 ).find((e) => entrySlug(e) === entrySlug(article));
 const alternates: Alternate[] = translation
   ? [
@@ -62,44 +59,31 @@ const dateFormat = new Intl.DateTimeFormat(lang, {
       }),
     ],
   }}
-  languageHref={translation
-    ? articlePath(translation)
-    : localizedPath(other, "writing")}
+  languageHref={translation ? articlePath(translation) : localizedPath(other, "writing")}
 >
-  <article
-    class="mx-auto flex w-full max-w-190 flex-col gap-8 px-4 py-20 sm:px-8 sm:py-28"
-  >
+  <article class="mx-auto flex w-full max-w-190 flex-col gap-8 px-4 py-20 sm:px-8 sm:py-28">
     <header class="flex flex-col gap-4">
-      <a href={localizedPath(lang, "writing")} class="eyebrow self-start"
-        >← {t("writing.back")}</a
-      >
-      <h1
-        class="text-[2.25rem] leading-[1.1] font-bold tracking-tight text-balance sm:text-[3rem]"
-      >
+      <a href={localizedPath(lang, "writing")} class="eyebrow self-start">
+        ← {t("writing.back")}
+      </a>
+      <h1 class="text-[2.25rem] leading-[1.1] font-bold tracking-tight text-balance sm:text-[3rem]">
         {data.title}
       </h1>
-      <p class="font-mono text-[0.8125rem] text-muted">
-        {t("writing.published")}
-        {" "}
-        <time datetime={data.pubDate.toISOString()}
-          >{dateFormat.format(data.pubDate)}</time
-        >
-        {
-          data.updatedDate && (
-            <>
-              {" "}
-              · {t("writing.updated")}{" "}
-              <time datetime={data.updatedDate.toISOString()}>
-                {dateFormat.format(data.updatedDate)}
-              </time>
-            </>
-          )
-        }
+      <p class="text-muted font-mono text-[0.8125rem]">
+        {t("writing.published")}{" "}
+        <time datetime={data.pubDate.toISOString()}>{dateFormat.format(data.pubDate)}</time>
+        {data.updatedDate && (
+          <>
+            {" "}
+            · {t("writing.updated")}{" "}
+            <time datetime={data.updatedDate.toISOString()}>
+              {dateFormat.format(data.updatedDate)}
+            </time>
+          </>
+        )}
       </p>
     </header>
-    <div
-      class="prose-article flex flex-col gap-5 text-[1.0625rem] leading-[1.75] text-ink-2"
-    >
+    <div class="prose-article text-ink-2 flex flex-col gap-5 text-[1.0625rem] leading-[1.75]">
       <Content />
     </div>
   </article>

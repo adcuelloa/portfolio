@@ -20,6 +20,7 @@ featured: true
 order: 2
 seoDescription: "Ges2l: a multi-tenant platform for educational institutions built with NestJS, React, PostgreSQL and Astro. In development and user-acceptance testing."
 ---
+
 ## Context
 
 Schools and academic institutions often run administration and academics in separate tools. Ges2l brings them into one platform: an administrative panel (campuses, users, roles, academic years) and an academic module (periods, groups, attendance, grades), behind a single account system.

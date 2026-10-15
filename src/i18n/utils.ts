@@ -29,13 +29,18 @@ type PathValue<T, P extends string> = P extends `${infer K}.${infer Rest}`
 
 /** The locale is decided by the first path segment only (`/es/...`), never by deeper slugs. */
 export function getLangFromUrl(url: URL): Locale {
-  const first = url.pathname.split("/").filter(Boolean)[0]?.replace(/\.html$/, "");
+  const first = url.pathname
+    .split("/")
+    .filter(Boolean)[0]
+    ?.replace(/\.html$/, "");
   return isLocale(first) ? first : defaultLocale;
 }
 
 function getByPath(source: unknown, path: string): unknown {
   return path.split(".").reduce<unknown>((acc, part) => {
-    return typeof acc === "object" && acc !== null ? (acc as Record<string, unknown>)[part] : undefined;
+    return typeof acc === "object" && acc !== null
+      ? (acc as Record<string, unknown>)[part]
+      : undefined;
   }, source);
 }
 

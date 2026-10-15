@@ -143,7 +143,12 @@
 @layer components {
   /* Highlighter stroke behind a key phrase; one place of personality, not a pattern. */
   .mark {
-    background-image: linear-gradient(transparent 62%, var(--mark) 62%, var(--mark) 92%, transparent 92%);
+    background-image: linear-gradient(
+      transparent 62%,
+      var(--mark) 62%,
+      var(--mark) 92%,
+      transparent 92%
+    );
     background-repeat: no-repeat;
     background-position: left center;
     box-decoration-break: slice;

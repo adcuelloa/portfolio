@@ -20,7 +20,7 @@ const paragraphs = ui[lang].home.about.paragraphs;
   aria-labelledby="about-title"
   class="mx-auto w-full max-w-300 scroll-mt-6 px-4 pb-24 sm:px-8 lg:px-12"
 >
-  <div class="grid gap-10 border-t border-line pt-12 lg:grid-cols-12">
+  <div class="border-line grid gap-10 border-t pt-12 lg:grid-cols-12">
     <div class="lg:col-span-5">
       <SectionHeading
         eyebrow={t("home.about.eyebrow")}
@@ -28,13 +28,11 @@ const paragraphs = ui[lang].home.about.paragraphs;
         id="about-title"
       />
     </div>
-    <div
-      class="flex flex-col-reverse gap-8 sm:flex-row sm:items-start lg:col-span-7"
-    >
-      <div
-        class="flex flex-col gap-5 text-[1.0625rem] leading-relaxed text-ink-2 sm:text-[1.125rem]"
-      >
-        {paragraphs.map((paragraph) => <p class="max-w-[58ch]">{paragraph}</p>)}
+    <div class="flex flex-col-reverse gap-8 sm:flex-row sm:items-start lg:col-span-7">
+      <div class="text-ink-2 flex flex-col gap-5 text-[1.0625rem] leading-relaxed sm:text-[1.125rem]">
+        {paragraphs.map((paragraph) => (
+          <p class="max-w-[58ch]">{paragraph}</p>
+        ))}
       </div>
       <Image
         src={cdn("images/profile/andres-cuello.webp")}
@@ -43,7 +41,7 @@ const paragraphs = ui[lang].home.about.paragraphs;
         height={360}
         widths={[180, 360]}
         sizes="180px"
-        class="size-45 shrink-0 rounded-xl border border-line object-cover"
+        class="border-line size-45 shrink-0 rounded-xl border object-cover"
       />
     </div>
   </div>

@@ -11,17 +11,34 @@ const maskId = `theme-mask-${crypto.randomUUID()}`;
   type="button"
   data-theme-toggle
   aria-pressed="false"
-  class="inline-flex size-11 items-center justify-center rounded-md text-ink-2 hover:bg-line/60"
+  class="text-ink-2 hover:bg-line/60 inline-flex size-11 items-center justify-center rounded-md"
 >
   <span class="sr-only">{label}</span>
-  <svg aria-hidden="true" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+  <svg
+    aria-hidden="true"
+    viewBox="0 0 24 24"
+    width="20"
+    height="20"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    stroke-linecap="round"
+  >
     <defs>
       <mask id={maskId} maskUnits="userSpaceOnUse" x="0" y="0" width="24" height="24">
         <rect width="24" height="24" fill="white" stroke="none" />
         <circle class="theme-cutout" cx="18" cy="6" r="8" fill="black" stroke="none" />
       </mask>
     </defs>
-    <circle class="theme-disc" cx="12" cy="12" r="5" fill="currentColor" stroke="none" mask={`url(#${maskId})`} />
+    <circle
+      class="theme-disc"
+      cx="12"
+      cy="12"
+      r="5"
+      fill="currentColor"
+      stroke="none"
+      mask={`url(#${maskId})`}
+    />
     <g class="theme-rays">
       <path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42" />
     </g>
@@ -63,7 +80,9 @@ const maskId = `theme-mask-${crypto.randomUUID()}`;
       transition: transform 350ms ease-in-out;
     }
     .theme-rays {
-      transition: transform 350ms ease-in-out, opacity 200ms ease-in-out;
+      transition:
+        transform 350ms ease-in-out,
+        opacity 200ms ease-in-out;
     }
   }
 </style>
@@ -83,7 +102,8 @@ const maskId = `theme-mask-${crypto.randomUUID()}`;
   function init() {
     cleanup?.();
     const root = document.documentElement;
-    const isDark = () => root.dataset.theme === "dark" || (root.dataset.theme !== "light" && media.matches);
+    const isDark = () =>
+      root.dataset.theme === "dark" || (root.dataset.theme !== "light" && media.matches);
     const buttons = [...document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]")];
     const sync = () => buttons.forEach((b) => b.setAttribute("aria-pressed", String(isDark())));
     const apply = (next: "light" | "dark") => {

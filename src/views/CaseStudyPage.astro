@@ -4,20 +4,10 @@ import { getCollection, render, type CollectionEntry } from "astro:content";
 
 import ExternalLink from "@/components/ui/ExternalLink.astro";
 import KindBadge from "@/components/ui/KindBadge.astro";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import {
-  localizedPath,
-  otherLocale,
-  sectionHref,
-  type Alternate,
-} from "@/i18n/routes";
+import { localizedPath, otherLocale, sectionHref, type Alternate } from "@/i18n/routes";
 import { useTranslations } from "@/i18n/utils";
-import {
-  caseStudyPath,
-  entryLocale,
-  entrySlug,
-  hasCaseStudy,
-} from "@/lib/content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { caseStudyPath, entryLocale, entrySlug, hasCaseStudy } from "@/lib/content";
 import { breadcrumbSchema } from "@/lib/seo";
 import { SITE } from "@/lib/site";
 
@@ -34,9 +24,9 @@ const url = new URL(caseStudyPath(project), site).href;
 
 // The translation is the entry with the same file name in the other locale folder.
 const other = otherLocale(lang);
-const translation = (
-  await getCollection("projects", (e) => entryLocale(e) === other)
-).find((e) => entrySlug(e) === entrySlug(project) && hasCaseStudy(e));
+const translation = (await getCollection("projects", (e) => entryLocale(e) === other)).find(
+  (e) => entrySlug(e) === entrySlug(project) && hasCaseStudy(e)
+);
 const alternates: Alternate[] = translation
   ? [
       { hreflang: lang, href: url },
@@ -73,105 +63,85 @@ const { Content } = await render(project);
   }}
   languageHref={translation ? caseStudyPath(translation) : undefined}
 >
-  <article
-    class="mx-auto flex w-full max-w-300 flex-col gap-12 px-4 pt-14 pb-24 sm:px-8 sm:pt-20 lg:px-12"
-  >
+  <article class="mx-auto flex w-full max-w-300 flex-col gap-12 px-4 pt-14 pb-24 sm:px-8 sm:pt-20 lg:px-12">
     <header class="grid gap-10 lg:grid-cols-12">
       <div class="flex flex-col gap-6 lg:col-span-8">
-        <a
-          href={workHref}
-          class="eyebrow self-start no-underline hover:text-accent-ink"
-          >← {t("caseStudy.back")}</a
-        >
+        <a href={workHref} class="eyebrow hover:text-accent-ink self-start no-underline">
+          ← {t("caseStudy.back")}
+        </a>
         <div class="flex flex-wrap items-center gap-2">
           <span class="eyebrow pr-2">{t("caseStudy.eyebrow")}</span>
           <KindBadge kind={data.kind} lang={lang} />
           {statusLabel && <span class="kind kind-neutral">{statusLabel}</span>}
         </div>
-        <h1
-          class="text-[2.75rem] leading-[1.02] font-bold tracking-[-0.032em] sm:text-[4rem]"
-        >
+        <h1 class="text-[2.75rem] leading-[1.02] font-bold tracking-[-0.032em] sm:text-[4rem]">
           {data.title}
         </h1>
-        <p class="max-w-[60ch] text-[1.1875rem] leading-relaxed text-ink-2">
-          {data.summary}
-        </p>
+        <p class="text-ink-2 max-w-[60ch] text-[1.1875rem] leading-relaxed">{data.summary}</p>
       </div>
 
-      <dl
-        class="flex flex-col gap-5 self-end rounded-xl border border-line bg-surface p-6 text-[0.9375rem] lg:col-span-4"
-      >
+      <dl class="border-line bg-surface flex flex-col gap-5 self-end rounded-xl border p-6 text-[0.9375rem] lg:col-span-4">
         <div>
           <dt class="eyebrow">{t("home.work.statusLabel")}</dt>
           <dd class="mt-1 leading-relaxed">{data.statusNote}</dd>
         </div>
         <div>
           <dt class="eyebrow">{t("home.work.builtLabel")}</dt>
-          <dd
-            class="mt-1 font-mono text-[0.8125rem] leading-relaxed text-ink-2"
-          >
+          <dd class="text-ink-2 mt-1 font-mono text-[0.8125rem] leading-relaxed">
             {data.stack.join(" · ")}
           </dd>
         </div>
-        {
-          (data.links.live || data.links.repository) && (
-            <div>
-              <dt class="eyebrow">{t("caseStudy.linksLabel")}</dt>
-              <dd class="flex flex-wrap gap-x-6">
-                {data.links.live && (
-                  <ExternalLink href={data.links.live}>
-                    {t("common.links.visit")}
-                  </ExternalLink>
-                )}
-                {data.links.repository && (
-                  <ExternalLink href={data.links.repository}>
-                    {t("common.links.repository")}
-                  </ExternalLink>
-                )}
-              </dd>
-            </div>
-          )
-        }
+        {(data.links.live || data.links.repository) && (
+          <div>
+            <dt class="eyebrow">{t("caseStudy.linksLabel")}</dt>
+            <dd class="flex flex-wrap gap-x-6">
+              {data.links.live && (
+                <ExternalLink href={data.links.live}>{t("common.links.visit")}</ExternalLink>
+              )}
+              {data.links.repository && (
+                <ExternalLink href={data.links.repository}>
+                  {t("common.links.repository")}
+                </ExternalLink>
+              )}
+            </dd>
+          </div>
+        )}
       </dl>
     </header>
 
-    {
-      data.image && data.imageAlt && (
-        <figure class="flex flex-col gap-3">
-          <div class="overflow-hidden rounded-xl border border-line bg-surface">
-            <Image
-              src={data.image}
-              alt={data.imageAlt}
-              width={1440}
-              height={900}
-              widths={[720, 960, 1440]}
-              sizes="(min-width: 1200px) 1104px, 100vw"
-              loading="eager"
-              fetchpriority="high"
-              class="aspect-16/10 h-auto w-full object-cover object-top"
-            />
-          </div>
-          <figcaption class="flex flex-col gap-1.5">
-            <span class="eyebrow">
-              {t("home.work.screenshotOf")} {data.imageSource}
-            </span>
-            {data.illustrativeMockup && (
-              <span class="flex gap-2 text-[0.8125rem] leading-relaxed text-muted">
-                <span aria-hidden="true" class="font-mono text-accent-ink">
-                  *
-                </span>
-                {t("home.work.mockupNote")}
+    {data.image && data.imageAlt && (
+      <figure class="flex flex-col gap-3">
+        <div class="border-line bg-surface overflow-hidden rounded-xl border">
+          <Image
+            src={data.image}
+            alt={data.imageAlt}
+            width={1440}
+            height={900}
+            widths={[720, 960, 1440]}
+            sizes="(min-width: 1200px) 1104px, 100vw"
+            loading="eager"
+            fetchpriority="high"
+            class="aspect-16/10 h-auto w-full object-cover object-top"
+          />
+        </div>
+        <figcaption class="flex flex-col gap-1.5">
+          <span class="eyebrow">
+            {t("home.work.screenshotOf")} {data.imageSource}
+          </span>
+          {data.illustrativeMockup && (
+            <span class="text-muted flex gap-2 text-[0.8125rem] leading-relaxed">
+              <span aria-hidden="true" class="text-accent-ink font-mono">
+                *
               </span>
-            )}
-          </figcaption>
-        </figure>
-      )
-    }
+              {t("home.work.mockupNote")}
+            </span>
+          )}
+        </figcaption>
+      </figure>
+    )}
 
     <div class="grid lg:grid-cols-12">
-      <div
-        class="prose-article flex flex-col gap-5 text-[1.0625rem] leading-[1.75] text-ink-2 lg:col-span-8 lg:col-start-3"
-      >
+      <div class="prose-article text-ink-2 flex flex-col gap-5 text-[1.0625rem] leading-[1.75] lg:col-span-8 lg:col-start-3">
         <Content />
       </div>
     </div>

@@ -19,6 +19,7 @@ featured: true
 order: 1
 seoDescription: "Sitio de marketing para un negocio colombiano de páginas web, contenido y Meta Ads: Astro prerenderizado en Cloudflare Workers, rápido y bilingüe."
 ---
+
 ## Contexto
 
 ItsFluxo ofrece páginas web, contenido, Meta Ads y automatizaciones a negocios en Colombia. El sitio debía cargar rápido en móvil, posicionar en búsquedas locales y convertir visitas en llamadas agendadas, sin un CMS ni un framework pesado de JavaScript.
@@ -27,7 +28,7 @@ ItsFluxo ofrece páginas web, contenido, Meta Ads y automatizaciones a negocios 
 
 - **Páginas prerenderizadas** para inicio, servicios, resultados, proceso, contacto, un blog y los documentos legales, totalmente bilingües: español en la raíz y cada página en inglés bajo `/en`, enlazadas con hreflang recíproco. Los textos legales viven en una content collection de Astro.
 - **Un endpoint de contacto bajo demanda.** Todo es estático excepto `/api/contact`, que corre en Cloudflare Workers, valida un token de Cloudflare Turnstile y envía el mensaje con Resend. Los secretos se quedan en el runtime del Worker.
-- **Consentimiento primero.** Las preferencias de cookies usan Vanilla CookieConsent en español, y el píxel de Meta solo se carga si el visitante acepta la categoría *Marketing*.
+- **Consentimiento primero.** Las preferencias de cookies usan Vanilla CookieConsent en español, y el píxel de Meta solo se carga si el visitante acepta la categoría _Marketing_.
 - **Animación con mesura.** Las apariciones simples usan animaciones CSS guiadas por scroll con alternativa para `prefers-reduced-motion`. GSAP queda para las secuencias más complejas, con limpieza en cada navegación del client router.
 - **Imágenes desde R2** (`cdn.itsfluxo.com`) con transformaciones de imagen de Cloudflare, además de sitemap y JSON-LD desde un pequeño helper de SEO.
 

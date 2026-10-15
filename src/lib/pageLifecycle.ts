@@ -24,7 +24,9 @@ function onBeforeSwap(event: TransitionBeforeSwapEvent): void {
   if (theme) event.newDocument.documentElement.dataset.theme = theme;
 
   pendingScrollY =
-    event.navigationType === "traverse" && typeof history.state?.scrollY === "number" ? history.state.scrollY : 0;
+    event.navigationType === "traverse" && typeof history.state?.scrollY === "number"
+      ? history.state.scrollY
+      : 0;
 }
 
 function applyPendingScroll(): void {

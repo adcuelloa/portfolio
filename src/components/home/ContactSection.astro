@@ -16,28 +16,22 @@ const t = useTranslations(lang);
   aria-labelledby="contact-title"
   class="mx-auto w-full max-w-300 scroll-mt-6 px-4 pb-16 sm:px-8 lg:px-12"
 >
-  <div
-    class="flex flex-col gap-8 rounded-2xl bg-invert p-8 text-invert-fg sm:p-12 lg:flex-row lg:items-end lg:justify-between"
-  >
+  <div class="bg-invert text-invert-fg flex flex-col gap-8 rounded-2xl p-8 sm:p-12 lg:flex-row lg:items-end lg:justify-between">
     <div class="flex max-w-136 flex-col gap-4">
-      <p class="font-mono text-[0.8125rem] text-invert-muted">
-        {t("home.contact.eyebrow")}
-      </p>
+      <p class="text-invert-muted font-mono text-[0.8125rem]">{t("home.contact.eyebrow")}</p>
       <h2
         id="contact-title"
         class="text-[1.875rem] leading-tight font-bold tracking-[-0.02em] text-balance sm:text-[2.5rem]"
       >
         {t("home.contact.title")}
       </h2>
-      <p class="text-[1.0625rem] leading-relaxed text-invert-muted">
-        {t("home.contact.body")}
-      </p>
+      <p class="text-invert-muted text-[1.0625rem] leading-relaxed">{t("home.contact.body")}</p>
     </div>
     <div class="flex flex-col gap-3 lg:items-end xl:shrink-0">
       <a
         href={`mailto:${SITE.email}`}
         aria-label={t("home.contact.emailAria")}
-        class="inline-flex min-h-12 items-center gap-2.5 self-stretch rounded-lg bg-invert-fg px-5 font-medium text-invert no-underline hover:opacity-90 sm:self-auto"
+        class="bg-invert-fg text-invert inline-flex min-h-12 items-center gap-2.5 self-stretch rounded-lg px-5 font-medium no-underline hover:opacity-90 sm:self-auto"
       >
         <svg
           aria-hidden="true"
@@ -58,7 +52,7 @@ const t = useTranslations(lang);
       <div class="flex flex-wrap gap-3 lg:justify-end xl:flex-nowrap">
         <a
           href={SITE.links.linkedin}
-          class="inline-flex min-h-12 items-center rounded-lg px-5 font-medium text-invert-fg no-underline ring-1 ring-invert-line ring-inset hover:bg-invert-fg/10"
+          class="text-invert-fg ring-invert-line hover:bg-invert-fg/10 inline-flex min-h-12 items-center rounded-lg px-5 font-medium no-underline ring-1 ring-inset"
         >
           {t("home.contact.linkedin")}
         </a>
@@ -66,15 +60,14 @@ const t = useTranslations(lang);
           href={SITE.links.calendly}
           target="_blank"
           rel="noopener"
-          class="inline-flex min-h-12 items-center rounded-lg px-5 font-medium text-invert-fg no-underline ring-1 ring-invert-line ring-inset hover:bg-invert-fg/10"
+          class="text-invert-fg ring-invert-line hover:bg-invert-fg/10 inline-flex min-h-12 items-center rounded-lg px-5 font-medium no-underline ring-1 ring-inset"
         >
-          {t("home.contact.call")}<span class="sr-only">
-            ({t("home.contact.newTab")})</span
-          >
+          {t("home.contact.call")}
+          <span class="sr-only">({t("home.contact.newTab")})</span>
         </a>
         <a
           href={SITE.links.github}
-          class="inline-flex min-h-12 items-center rounded-lg px-5 font-medium text-invert-fg no-underline ring-1 ring-invert-line ring-inset hover:bg-invert-fg/10"
+          class="text-invert-fg ring-invert-line hover:bg-invert-fg/10 inline-flex min-h-12 items-center rounded-lg px-5 font-medium no-underline ring-1 ring-inset"
         >
           {t("home.contact.github")}
         </a>

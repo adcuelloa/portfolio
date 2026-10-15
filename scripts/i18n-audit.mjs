@@ -21,13 +21,18 @@ function walk(dir) {
 }
 
 function flatten(value, prefix = "") {
-  if (Array.isArray(value) || value === null || typeof value !== "object") return prefix ? [prefix] : [];
-  return Object.entries(value).flatMap(([key, child]) => flatten(child, prefix ? `${prefix}.${key}` : key));
+  if (Array.isArray(value) || value === null || typeof value !== "object")
+    return prefix ? [prefix] : [];
+  return Object.entries(value).flatMap(([key, child]) =>
+    flatten(child, prefix ? `${prefix}.${key}` : key)
+  );
 }
 
 const keysByLocale = new Map();
 for (const locale of locales) {
-  const { default: data } = await import(pathToFileURL(join(sourceRoot, "i18n", "locales", `${locale}.ts`)).href);
+  const { default: data } = await import(
+    pathToFileURL(join(sourceRoot, "i18n", "locales", `${locale}.ts`)).href
+  );
   keysByLocale.set(locale, new Set(flatten(data)));
 }
 
@@ -43,19 +48,27 @@ for (const file of walk(sourceRoot)) {
 }
 
 const defined = new Set([...keysByLocale.values()].flatMap((keys) => [...keys]));
-const isUsed = (key) => used.has(key) || [...usedPrefixes].some((p) => key === p || key.startsWith(`${p}.`));
+const isUsed = (key) =>
+  used.has(key) || [...usedPrefixes].some((p) => key === p || key.startsWith(`${p}.`));
 const unused = [...defined].filter((key) => !isUsed(key)).sort();
 const unknown = [...used.keys()].filter((key) => !defined.has(key)).sort();
 const missing = locales.flatMap((locale) =>
-  [...defined].filter((key) => !keysByLocale.get(locale).has(key)).map((key) => `${locale}: ${key}`),
+  [...defined].filter((key) => !keysByLocale.get(locale).has(key)).map((key) => `${locale}: ${key}`)
 );
 
 console.info(`i18n audit: ${used.size} keys referenced, ${defined.size} defined.`);
-const report = (title, list) => list.length && console.info(`\n${title}:\n${list.map((x) => `  - ${x}`).join("\n")}`);
+const report = (title, list) =>
+  list.length && console.info(`\n${title}:\n${list.map((x) => `  - ${x}`).join("\n")}`);
 report("Unused keys", unused);
-report("Unknown keys", unknown.map((key) => `${key} (${used.get(key).join(", ")})`));
+report(
+  "Unknown keys",
+  unknown.map((key) => `${key} (${used.get(key).join(", ")})`)
+);
 report("Missing keys", missing);
 
-const failed = unknown.length > 0 || missing.length > 0 || (process.argv.includes("--strict") && unused.length > 0);
+const failed =
+  unknown.length > 0 ||
+  missing.length > 0 ||
+  (process.argv.includes("--strict") && unused.length > 0);
 console.info(failed ? "\n❌ i18n audit failed" : "\n✅ i18n audit passed");
 process.exit(failed ? 1 : 0);

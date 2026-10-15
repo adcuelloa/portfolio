@@ -1,12 +1,7 @@
 ---
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import {
-  alternateLinks,
-  localizedPath,
-  otherLocale,
-  type Locale,
-} from "@/i18n/routes";
+import { alternateLinks, localizedPath, otherLocale, type Locale } from "@/i18n/routes";
 import { useTranslations } from "@/i18n/utils";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { articlePath, getPublishedArticles } from "@/lib/content";
 import { SITE } from "@/lib/site";
 
@@ -34,49 +29,32 @@ const dateFormat = new Intl.DateTimeFormat(lang, {
   }}
   languageHref={localizedPath(otherLocale(lang), "writing")}
 >
-  <section
-    class="mx-auto flex w-full max-w-300 flex-col gap-10 px-4 py-20 sm:px-8 sm:py-28 lg:px-12"
-  >
+  <section class="mx-auto flex w-full max-w-300 flex-col gap-10 px-4 py-20 sm:px-8 sm:py-28 lg:px-12">
     <header class="flex flex-col gap-4">
-      <h1
-        class="text-[2.5rem] leading-[1.05] font-bold tracking-[-0.03em] sm:text-[3.5rem]"
-      >
+      <h1 class="text-[2.5rem] leading-[1.05] font-bold tracking-[-0.03em] sm:text-[3.5rem]">
         {t("writing.title")}
       </h1>
-      <p class="max-w-[56ch] text-[1.125rem] leading-relaxed text-ink-2">
-        {t("writing.lead")}
-      </p>
+      <p class="text-ink-2 max-w-[56ch] text-[1.125rem] leading-relaxed">{t("writing.lead")}</p>
     </header>
-    {
-      articles.length === 0 ? (
-        <p class="max-w-[56ch] border-t border-line pt-8 text-ink-2">
-          {t("writing.empty")}
-        </p>
-      ) : (
-        <ul class="flex flex-col border-t border-line">
-          {articles.map((article) => (
-            <li class="border-b border-line">
-              <a
-                href={articlePath(article)}
-                class="flex flex-col gap-2 py-6 no-underline"
+    {articles.length === 0 ? (
+      <p class="border-line text-ink-2 max-w-[56ch] border-t pt-8">{t("writing.empty")}</p>
+    ) : (
+      <ul class="border-line flex flex-col border-t">
+        {articles.map((article) => (
+          <li class="border-line border-b">
+            <a href={articlePath(article)} class="flex flex-col gap-2 py-6 no-underline">
+              <span class="text-ink text-[1.375rem] font-semibold">{article.data.title}</span>
+              <span class="text-ink-2 max-w-[70ch]">{article.data.description}</span>
+              <time
+                datetime={article.data.pubDate.toISOString()}
+                class="text-muted font-mono text-[0.8125rem]"
               >
-                <span class="text-[1.375rem] font-semibold text-ink">
-                  {article.data.title}
-                </span>
-                <span class="max-w-[70ch] text-ink-2">
-                  {article.data.description}
-                </span>
-                <time
-                  datetime={article.data.pubDate.toISOString()}
-                  class="font-mono text-[0.8125rem] text-muted"
-                >
-                  {dateFormat.format(article.data.pubDate)}
-                </time>
-              </a>
-            </li>
-          ))}
-        </ul>
-      )
-    }
+                {dateFormat.format(article.data.pubDate)}
+              </time>
+            </a>
+          </li>
+        ))}
+      </ul>
+    )}
   </section>
 </BaseLayout>

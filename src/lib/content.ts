@@ -7,7 +7,8 @@ type Entry = { id: string };
 /** Locale from the entry id prefix (`en/itsfluxo` → `en`). */
 export function entryLocale(entry: Entry): Locale {
   const candidate = entry.id.split("/")[0];
-  if (!isLocale(candidate)) throw new Error(`Content entry "${entry.id}" is not inside a locale folder`);
+  if (!isLocale(candidate))
+    throw new Error(`Content entry "${entry.id}" is not inside a locale folder`);
   return candidate;
 }
 
@@ -24,7 +25,7 @@ export async function getProjects(lang: Locale): Promise<CollectionEntry<"projec
 export async function getPublishedArticles(lang: Locale): Promise<CollectionEntry<"articles">[]> {
   const entries = await getCollection(
     "articles",
-    (entry) => entryLocale(entry) === lang && !entry.data.draft,
+    (entry) => entryLocale(entry) === lang && !entry.data.draft
   );
   return entries.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 }

@@ -18,7 +18,7 @@ const roles = ui[lang].home.experience.roles;
   aria-labelledby="experience-title"
   class="mx-auto w-full max-w-300 scroll-mt-6 px-4 pb-24 sm:px-8 lg:px-12"
 >
-  <div class="grid gap-10 border-t border-line pt-12 lg:grid-cols-12">
+  <div class="border-line grid gap-10 border-t pt-12 lg:grid-cols-12">
     <div class="lg:col-span-5">
       <SectionHeading
         eyebrow={t("home.experience.eyebrow")}
@@ -27,44 +27,32 @@ const roles = ui[lang].home.experience.roles;
       />
     </div>
     <ol class="flex flex-col lg:col-span-7">
-      <li class="flex flex-col gap-3 border-b border-line pb-8">
+      <li class="border-line flex flex-col gap-3 border-b pb-8">
         <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
-          <h3 class="text-[1.1875rem] font-semibold">
-            {t("home.experience.employer")}
-          </h3>
+          <h3 class="text-[1.1875rem] font-semibold">{t("home.experience.employer")}</h3>
           <KindBadge kind="employment" lang={lang} />
         </div>
-        <p class="font-mono text-[0.8125rem] text-muted">
-          {t("home.experience.employmentPeriod")}
-        </p>
+        <p class="text-muted font-mono text-[0.8125rem]">{t("home.experience.employmentPeriod")}</p>
         <p class="text-ink-2">{t("home.experience.employmentDetail")}</p>
-        <ul class="mt-1 flex flex-col gap-3 border-l border-line-strong pl-4">
-          {
-            roles.map((role) => (
-              <li class="flex flex-col gap-0.5">
-                <p class="flex flex-wrap items-baseline gap-x-3">
-                  <span class="font-semibold text-ink">{role.title}</span>
-                  <span class="font-mono text-[0.8125rem] text-muted">
-                    {role.period}
-                  </span>
-                </p>
-                <p class="text-[0.9375rem] text-muted">{role.note}</p>
-              </li>
-            ))
-          }
+        <ul class="border-line-strong mt-1 flex flex-col gap-3 border-l pl-4">
+          {roles.map((role) => (
+            <li class="flex flex-col gap-0.5">
+              <p class="flex flex-wrap items-baseline gap-x-3">
+                <span class="text-ink font-semibold">{role.title}</span>
+                <span class="text-muted font-mono text-[0.8125rem]">{role.period}</span>
+              </p>
+              <p class="text-muted text-[0.9375rem]">{role.note}</p>
+            </li>
+          ))}
         </ul>
       </li>
       <li class="flex flex-col gap-2 pt-8">
         <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
-          <h3 class="text-[1.1875rem] font-semibold">
-            {t("home.experience.degree")}
-          </h3>
+          <h3 class="text-[1.1875rem] font-semibold">{t("home.experience.degree")}</h3>
           <KindBadge kind="education" lang={lang} />
         </div>
         <p class="text-ink-2">{t("home.experience.school")}</p>
-        <p class="font-mono text-[0.8125rem] text-muted">
-          {t("home.experience.degreeStatus")}
-        </p>
+        <p class="text-muted font-mono text-[0.8125rem]">{t("home.experience.degreeStatus")}</p>
       </li>
     </ol>
   </div>

@@ -68,7 +68,8 @@ export default {
       lead: "Cada proyecto indica lo que es: empleo, proyecto independiente o código abierto. Las capturas son de los sitios públicos en producción.",
       screenshotOf: "Captura de",
       statusLabel: "Estado",
-      mockupNote: "El panel de esta captura es una maqueta ilustrativa del sitio de marketing público, no datos de una institución que use la plataforma.",
+      mockupNote:
+        "El panel de esta captura es una maqueta ilustrativa del sitio de marketing público, no datos de una institución que use la plataforma.",
       builtLabel: "Tecnologías",
       more: "Más trabajo de ingeniería",
     },
@@ -103,7 +104,8 @@ export default {
       title: "Experiencia y formación",
       employer: "We Are Solutions, Inc.",
       employmentPeriod: "Mar. 2024 – sep. 2026",
-      employmentDetail: "Medio tiempo de marzo a agosto de 2024 y tiempo completo desde septiembre de 2024.",
+      employmentDetail:
+        "Medio tiempo de marzo a agosto de 2024 y tiempo completo desde septiembre de 2024.",
       roles: [
         {
           title: "Webmaster",

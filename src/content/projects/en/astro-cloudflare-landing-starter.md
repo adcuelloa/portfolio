@@ -9,6 +9,7 @@ links:
 order: 4
 seoDescription: "An open-source, static-first Astro starter for bilingual landing pages on Cloudflare, with typed i18n, SEO helpers, CDN images and audit scripts."
 ---
+
 ## Context
 
 After building several bilingual Astro sites on Cloudflare, I kept repeating the same groundwork: translations, localized routes, metadata, image delivery and consent-gated analytics. This starter packages that groundwork so a new landing page starts from a correct base.
