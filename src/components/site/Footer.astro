@@ -1,0 +1,42 @@
+---
+import type { Locale } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/utils";
+import { SITE } from "@/lib/site";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const links = [
+  { label: "LinkedIn", href: SITE.links.linkedin },
+  { label: "GitHub", href: SITE.links.github },
+];
+---
+
+<footer transition:name="site-footer" class="mx-auto w-full max-w-[1200px] px-4 pb-10 sm:px-8 lg:px-12">
+  <div class="flex flex-col gap-4 border-t border-line pt-6 sm:flex-row sm:items-center sm:justify-between">
+    <p class="text-[0.9375rem]">
+      <span class="font-semibold text-ink">{SITE.name}</span>
+      <span class="text-muted"> — {t("common.footer.role")}</span>
+    </p>
+    <ul class="-mx-3 flex flex-wrap items-center">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.href} class="inline-flex min-h-11 items-center px-3 text-[0.9375rem] text-ink-2 no-underline hover:text-accent-ink">
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a href="#main" class="inline-flex min-h-11 items-center px-3 font-mono text-[0.8125rem] text-muted no-underline hover:text-accent-ink">
+          ↑ {t("common.footer.backToTop")}
+        </a>
+      </li>
+    </ul>
+  </div>
+</footer>

@@ -1,0 +1,54 @@
+---
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  aria-pressed="false"
+  class="inline-flex size-11 items-center justify-center rounded-md text-ink-2 hover:bg-line/60"
+>
+  <span class="sr-only">{label}</span>
+  <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 3a9 9 0 1 0 9 9A7 7 0 0 1 12 3Z"></path>
+  </svg>
+</button>
+
+<script>
+  // Runs once per page load (including client-router swaps) and cleans up before the next swap.
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+  let cleanup: (() => void) | undefined;
+
+  function init() {
+    cleanup?.();
+    const root = document.documentElement;
+    const isDark = () => root.dataset.theme === "dark" || (root.dataset.theme !== "light" && media.matches);
+    const buttons = [...document.querySelectorAll<HTMLButtonElement>("[data-theme-toggle]")];
+    const sync = () => buttons.forEach((b) => b.setAttribute("aria-pressed", String(isDark())));
+    const toggle = () => {
+      const next = isDark() ? "light" : "dark";
+      root.dataset.theme = next;
+      try {
+        localStorage.setItem("theme", next);
+      } catch {
+        // Storage can be unavailable (private mode); the choice still applies to this page.
+      }
+      sync();
+    };
+
+    sync();
+    media.addEventListener("change", sync);
+    buttons.forEach((b) => b.addEventListener("click", toggle));
+    cleanup = () => {
+      media.removeEventListener("change", sync);
+      buttons.forEach((b) => b.removeEventListener("click", toggle));
+    };
+  }
+
+  document.addEventListener("astro:page-load", init);
+  document.addEventListener("astro:before-swap", () => cleanup?.());
+</script>

@@ -1,0 +1,40 @@
+---
+import { sectionIds, type Locale } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/utils";
+import { SITE } from "@/lib/site";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<section id={sectionIds.contact[lang]} aria-labelledby="contact-title" class="mx-auto w-full max-w-[1200px] scroll-mt-6 px-4 pb-16 sm:px-8 lg:px-12">
+  <div class="flex flex-col gap-8 rounded-2xl bg-invert p-8 text-invert-fg sm:p-12 lg:flex-row lg:items-end lg:justify-between">
+    <div class="flex max-w-[34rem] flex-col gap-4">
+      <p class="font-mono text-[0.8125rem] text-invert-muted">06 — {t("home.contact.eyebrow")}</p>
+      <h2 id="contact-title" class="text-[1.875rem] leading-tight font-bold tracking-[-0.02em] text-balance sm:text-[2.5rem]">
+        {t("home.contact.title")}
+      </h2>
+      <p class="text-[1.0625rem] leading-relaxed text-invert-muted">{t("home.contact.body")}</p>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      <a href={SITE.links.linkedin} class="inline-flex min-h-12 items-center rounded-lg bg-invert-fg px-5 font-medium text-invert no-underline hover:opacity-90">
+        {t("home.contact.linkedin")}
+      </a>
+      <a
+        href={SITE.links.calendly}
+        target="_blank"
+        rel="noopener"
+        class="inline-flex min-h-12 items-center rounded-lg px-5 font-medium text-invert-fg no-underline ring-1 ring-invert-line ring-inset hover:bg-invert-fg/10"
+      >
+        {t("home.contact.call")}<span class="sr-only"> ({t("home.contact.newTab")})</span>
+      </a>
+      <a href={SITE.links.github} class="inline-flex min-h-12 items-center rounded-lg px-5 font-medium text-invert-fg no-underline ring-1 ring-invert-line ring-inset hover:bg-invert-fg/10">
+        {t("home.contact.github")}
+      </a>
+    </div>
+  </div>
+</section>

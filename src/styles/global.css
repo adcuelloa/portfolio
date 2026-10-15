@@ -1,3 +1,244 @@
 @import "tailwindcss";
 
-@custom-variant dark (&:where(.dark, .dark *));
+/*
+  Design tokens. Light is the default; dark applies when the system prefers it
+  (unless the visitor forced light) or when the visitor forces dark.
+*/
+:root {
+  color-scheme: light;
+  --paper: #f6f7f5;
+  --surface: #ffffff;
+  --ink: #15181a;
+  --ink-2: #2c3437;
+  --muted: #4f585b;
+  --line: #dce0db;
+  --line-strong: #b4bab3;
+  --accent: #0b6e63;
+  --accent-ink: #0b4f48;
+  --accent-soft: #e1eeea;
+  --mark: #c9e6de;
+  --kind-independent-bg: #e8e9f6;
+  --kind-independent-fg: #2e3580;
+  --kind-oss-bg: #f5ebdd;
+  --kind-oss-fg: #6b4310;
+  --kind-employment-bg: #e1eeea;
+  --kind-employment-fg: #0b4f48;
+  --invert-bg: #15181a;
+  --invert-fg: #f1f3f0;
+  --invert-muted: #b7c0bc;
+  --invert-line: #4a524f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper: #0f1211;
+    --surface: #161a19;
+    --ink: #eceeed;
+    --ink-2: #cdd3d0;
+    --muted: #9ca5a1;
+    --line: #262c2a;
+    --line-strong: #3d4542;
+    --accent: #5cc6b3;
+    --accent-ink: #8fdccd;
+    --accent-soft: #15302b;
+    --mark: #1f4a41;
+    --kind-independent-bg: #1f2242;
+    --kind-independent-fg: #bcc1f5;
+    --kind-oss-bg: #33271a;
+    --kind-oss-fg: #f0cfa0;
+    --kind-employment-bg: #15302b;
+    --kind-employment-fg: #8fdccd;
+    --invert-bg: #e9ecea;
+    --invert-fg: #15181a;
+    --invert-muted: #49524e;
+    --invert-line: #b4bab3;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #0f1211;
+  --surface: #161a19;
+  --ink: #eceeed;
+  --ink-2: #cdd3d0;
+  --muted: #9ca5a1;
+  --line: #262c2a;
+  --line-strong: #3d4542;
+  --accent: #5cc6b3;
+  --accent-ink: #8fdccd;
+  --accent-soft: #15302b;
+  --mark: #1f4a41;
+  --kind-independent-bg: #1f2242;
+  --kind-independent-fg: #bcc1f5;
+  --kind-oss-bg: #33271a;
+  --kind-oss-fg: #f0cfa0;
+  --kind-employment-bg: #15302b;
+  --kind-employment-fg: #8fdccd;
+  --invert-bg: #e9ecea;
+  --invert-fg: #15181a;
+  --invert-muted: #49524e;
+  --invert-line: #b4bab3;
+}
+
+@theme inline {
+  --font-sans: "Schibsted Grotesk Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", monospace;
+
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
+  --color-mark: var(--mark);
+  --color-invert: var(--invert-bg);
+  --color-invert-fg: var(--invert-fg);
+  --color-invert-muted: var(--invert-muted);
+  --color-invert-line: var(--invert-line);
+}
+
+@layer base {
+  html {
+    background-color: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    scroll-margin-top: 1.5rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  body {
+    min-height: 100svh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--mark);
+    color: var(--ink);
+  }
+
+  a {
+    text-underline-offset: 0.2em;
+    text-decoration-thickness: 1px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Highlighter stroke behind a key phrase; one place of personality, not a pattern. */
+  .mark {
+    background-image: linear-gradient(transparent 62%, var(--mark) 62%, var(--mark) 92%, transparent 92%);
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    padding-inline: 0.06em;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+  }
+
+  .kind {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border-radius: 999px;
+    padding: 0.25rem 0.65rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+  .kind-independent {
+    background: var(--kind-independent-bg);
+    color: var(--kind-independent-fg);
+  }
+  .kind-open-source {
+    background: var(--kind-oss-bg);
+    color: var(--kind-oss-fg);
+  }
+  .kind-employment,
+  .kind-education {
+    background: var(--kind-employment-bg);
+    color: var(--kind-employment-fg);
+  }
+  .kind-neutral {
+    background: transparent;
+    color: var(--muted);
+    box-shadow: inset 0 0 0 1px var(--line-strong);
+  }
+}
+
+@layer components {
+  /* Long-form article body (Markdown output). Kept small: type rhythm, links and code. */
+  .prose-article h2 {
+    margin-top: 1.5rem;
+    font-size: 1.625rem;
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .prose-article h3 {
+    margin-top: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .prose-article a {
+    color: var(--accent-ink);
+    text-decoration: underline;
+  }
+  .prose-article ul,
+  .prose-article ol {
+    padding-left: 1.25rem;
+    list-style: revert;
+  }
+  .prose-article :not(pre) > code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    background: var(--accent-soft);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+  }
+  .prose-article pre {
+    overflow-x: auto;
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+  .prose-article blockquote {
+    border-left: 2px solid var(--accent);
+    padding-left: 1rem;
+    color: var(--muted);
+  }
+}
+
+/* Client-router transitions: Astro's default cross-fade, disabled for visitors who prefer reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}

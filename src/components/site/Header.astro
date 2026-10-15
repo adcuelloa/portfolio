@@ -1,0 +1,60 @@
+---
+import ThemeToggle from "@/components/site/ThemeToggle.astro";
+import { localizedPath, otherLocale, sectionHref, type Locale } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/utils";
+import { SITE } from "@/lib/site";
+
+interface Props {
+  lang: Locale;
+  languageHref?: string;
+}
+
+const { lang, languageHref } = Astro.props;
+const t = useTranslations(lang);
+const other = otherLocale(lang);
+
+const nav = [
+  { label: t("common.nav.work"), href: sectionHref(lang, "work") },
+  { label: t("common.nav.experience"), href: sectionHref(lang, "experience") },
+  { label: t("common.nav.writing"), href: localizedPath(lang, "writing") },
+  { label: t("common.nav.about"), href: sectionHref(lang, "about") },
+];
+---
+
+<header transition:name="site-header" class="mx-auto w-full max-w-[1200px] px-4 sm:px-8 lg:px-12">
+  <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 border-b border-line py-3">
+    <a href={localizedPath(lang, "home")} class="py-2 text-[1.0625rem] font-semibold tracking-tight text-ink no-underline">
+      {SITE.name}
+    </a>
+
+    <nav aria-label={t("common.nav.label")} class="order-3 -mx-2 w-[calc(100%+1rem)] overflow-x-auto sm:order-none sm:mx-0 sm:ml-auto sm:w-auto">
+      <ul class="flex items-center justify-between sm:justify-start">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="inline-flex min-h-11 items-center px-2 text-[0.9375rem] whitespace-nowrap text-ink-2 no-underline transition-colors hover:text-accent-ink sm:px-3"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="order-2 flex items-center gap-1 sm:order-none">
+      <a
+        href={languageHref ?? localizedPath(other, "home")}
+        hreflang={other}
+        lang={other}
+        aria-label={t("common.language.switchAria")}
+        class="inline-flex min-h-11 items-center rounded-md px-3 font-mono text-[0.8125rem] text-ink-2 no-underline hover:bg-line/60"
+      >
+        {t("common.language.switchLabel")}
+      </a>
+      <ThemeToggle label={t("common.theme.toggle")} />
+    </div>
+  </div>
+</header>

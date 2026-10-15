@@ -1,17 +1,25 @@
-# Portfolio Personal - Andrés Cuello
+# cuello.dev
 
-<div align="center">
-<a href="https://cuello.dev/">
-<img src="https://cdn.cuello.dev/portfolio.webp">
-</a>
-</div>
+Personal site of Andrés Cuello, web engineer. English at `/`, Spanish at `/es`.
 
-## 💡 Base del Proyecto
+Static Astro site deployed on Cloudflare Pages. Images are served from R2 through Cloudflare image transformations (`PUBLIC_CDN_URL`).
 
-Este proyecto está basado en el excelente trabajo de **Miguel Ángel Durán (midudev)** y su plantilla de portfolio.
+## Commands
 
-- **Proyecto Original:** [midudev/porfolio.dev](https://github.com/midudev/porfolio.dev)
+| Command | What it does |
+| --- | --- |
+| `pnpm dev` | Local dev server |
+| `pnpm build` | Production build to `dist/client` |
+| `pnpm preview` | Preview the production build |
+| `pnpm typecheck` | `astro check` |
+| `pnpm i18n:audit` | Translation keys: unknown, missing or unused |
+| `pnpm seo:audit` | Title/description lengths and brand spelling |
+| `pnpm hreflang:audit` | Canonical, hreflang, `lang` and sitemap checks on the built HTML |
+| `pnpm verify` | All of the above, in order |
 
-- **Autor Original:** [midudev](https://github.com/midudev)
+## Structure
 
-Gran parte de la estructura, configuración inicial y prácticas de desarrollo fueron adoptadas de este repositorio. Agradecimientos a Midudev por compartir su trabajo con la comunidad.
+- `src/i18n/` — routes (`routes.ts`), typed translations (`locales/`), helpers (`utils.ts`)
+- `src/content/` — projects and articles, one folder per locale; the same file name pairs translations
+- `src/views/` — page bodies shared by the English and Spanish routes in `src/pages/`
+- `src/lib/` — SEO helpers, content queries, the Cloudflare image service

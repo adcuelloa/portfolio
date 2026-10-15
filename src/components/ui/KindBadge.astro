@@ -1,0 +1,23 @@
+---
+import type { Locale } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/utils";
+
+export type Kind = "employment" | "independent" | "open-source" | "education";
+
+interface Props {
+  kind: Kind;
+  lang: Locale;
+}
+
+const { kind, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const labels = {
+  employment: t("common.kinds.employment"),
+  independent: t("common.kinds.independent"),
+  "open-source": t("common.kinds.openSource"),
+  education: t("common.kinds.education"),
+} satisfies Record<Kind, string>;
+---
+
+<span class={`kind kind-${kind}`}>{labels[kind]}</span>

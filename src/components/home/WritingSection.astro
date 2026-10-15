@@ -1,0 +1,46 @@
+---
+import SectionHeading from "@/components/ui/SectionHeading.astro";
+import { localizedPath, sectionIds, type Locale } from "@/i18n/routes";
+import { useTranslations } from "@/i18n/utils";
+import { articlePath, getPublishedArticles } from "@/lib/content";
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const articles = (await getPublishedArticles(lang)).slice(0, 3);
+const dateFormat = new Intl.DateTimeFormat(lang, { year: "numeric", month: "short", day: "numeric" });
+---
+
+<section id={sectionIds.writing[lang]} aria-labelledby="writing-title" class="mx-auto w-full max-w-[1200px] scroll-mt-6 px-4 pb-24 sm:px-8 lg:px-12">
+  <div class="grid gap-10 border-t border-line pt-12 lg:grid-cols-12">
+    <div class="lg:col-span-5">
+      <SectionHeading index="04" eyebrow={t("home.writing.eyebrow")} title={t("home.writing.title")} id="writing-title" />
+    </div>
+    <div class="lg:col-span-7">
+      {
+        articles.length === 0 ? (
+          <p class="max-w-[56ch] text-[1.0625rem] leading-relaxed text-ink-2">{t("home.writing.empty")}</p>
+        ) : (
+          <div class="flex flex-col gap-6">
+            <ul class="flex flex-col">
+              {articles.map((article) => (
+                <li class="border-b border-line">
+                  <a href={articlePath(article)} class="flex flex-col gap-1 py-5 no-underline sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
+                    <span class="text-[1.1875rem] font-medium text-ink">{article.data.title}</span>
+                    <time datetime={article.data.pubDate.toISOString()} class="shrink-0 font-mono text-[0.8125rem] text-muted">
+                      {dateFormat.format(article.data.pubDate)}
+                    </time>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <a href={localizedPath(lang, "writing")} class="self-start font-medium text-accent-ink">{t("home.writing.all")}</a>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
