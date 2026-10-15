@@ -20,11 +20,11 @@ const href = (project: (typeof projects)[number]) => (hasCaseStudy(project) ? ca
 
 <section id={sectionIds.work[lang]} aria-labelledby="work-title" class="mx-auto w-full max-w-[1200px] scroll-mt-6 px-4 pb-24 sm:px-8 lg:px-12">
   <div class="flex flex-col gap-4 pb-12 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
-    <SectionHeading index="01" eyebrow={t("home.work.eyebrow")} title={t("home.work.title")} id="work-title" />
+    <SectionHeading eyebrow={t("home.work.eyebrow")} title={t("home.work.title")} id="work-title" />
     <p class="max-w-[46ch] text-[0.9375rem] leading-relaxed text-muted">{t("home.work.lead")}</p>
   </div>
 
-  <div class="flex flex-col gap-16">
+  <div class="flex flex-col gap-8">
     {featured.map((project, index) => <FeaturedProject project={project} lang={lang} index={index} caseStudyHref={href(project)} />)}
   </div>
 
@@ -32,9 +32,9 @@ const href = (project: (typeof projects)[number]) => (hasCaseStudy(project) ? ca
     more.length > 0 && (
       <div class="mt-20">
         <h3 class="eyebrow pb-4">{t("home.work.more")}</h3>
-        <div class="border-b border-line">
-          {more.map((project, index) => (
-            <ProjectRow project={project} lang={lang} number={String(featured.length + index + 1).padStart(2, "0")} caseStudyHref={href(project)} />
+        <div class="flex flex-col gap-4">
+          {more.map((project) => (
+            <ProjectRow project={project} lang={lang} caseStudyHref={href(project)} />
           ))}
         </div>
       </div>

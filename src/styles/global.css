@@ -144,9 +144,26 @@
   /* Highlighter stroke behind a key phrase; one place of personality, not a pattern. */
   .mark {
     background-image: linear-gradient(transparent 62%, var(--mark) 62%, var(--mark) 92%, transparent 92%);
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
+    background-repeat: no-repeat;
+    background-position: left center;
+    box-decoration-break: slice;
+    -webkit-box-decoration-break: slice;
     padding-inline: 0.06em;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .mark {
+      animation: mark-reveal 700ms 180ms ease-in-out both;
+    }
+  }
+
+  @keyframes mark-reveal {
+    from {
+      background-size: 0% 100%;
+    }
+    to {
+      background-size: 100% 100%;
+    }
   }
 
   .eyebrow {
@@ -235,24 +252,28 @@
 }
 
 /*
-  Theme switch: the new theme is revealed by an expanding circle (animated from the toggle script);
-  the old snapshot blurs out underneath. Header/footer keep their client-router names during page
+  Theme switch: CSS owns the entire reveal so the snapshot and circle share one timeline.
+  Header/footer keep their client-router names during page
   navigation, but are folded into the root snapshot here so the circle reveals them too.
 */
 :root[data-theme-transition] [data-astro-transition-scope] {
   view-transition-name: none !important;
 }
 :root[data-theme-transition]::view-transition-old(root) {
-  animation: theme-blur-out 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  z-index: -1;
+  animation: none;
+  mix-blend-mode: normal;
 }
 :root[data-theme-transition]::view-transition-new(root) {
-  animation: none;
+  animation: theme-reveal 450ms ease-in-out both;
+  mix-blend-mode: normal;
 }
-@keyframes theme-blur-out {
+@keyframes theme-reveal {
+  from {
+    clip-path: circle(0px at var(--theme-x) var(--theme-y));
+  }
   to {
-    opacity: 0;
-    filter: blur(12px);
+    /* 150% covers the snapshot diagonal even when Android's toolbars change innerHeight. */
+    clip-path: circle(150% at var(--theme-x) var(--theme-y));
   }
 }
 

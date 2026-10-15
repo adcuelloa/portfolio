@@ -113,7 +113,7 @@ export default {
       ],
       school: "Corporación Universitaria Remington",
       degree: "Ingeniería de Sistemas",
-      degreeStatus: "En curso",
+      degreeStatus: "En curso · Graduación prevista: 2028",
     },
     writing: {
       eyebrow: "Artículos",

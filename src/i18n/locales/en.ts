@@ -113,7 +113,7 @@ export default {
       ],
       school: "Corporación Universitaria Remington",
       degree: "Systems Engineering",
-      degreeStatus: "In progress",
+      degreeStatus: "In progress · Expected graduation: 2028",
     },
     writing: {
       eyebrow: "Writing",

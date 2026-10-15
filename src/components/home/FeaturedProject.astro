@@ -17,7 +17,6 @@ interface Props {
 const { project, lang, index, caseStudyHref } = Astro.props;
 const { data } = project;
 const t = useTranslations(lang);
-const number = String(index + 1).padStart(2, "0");
 const reversed = index % 2 === 1;
 const titleId = `project-${project.id.replace(/\W+/g, "-")}`;
 
@@ -26,7 +25,7 @@ const statusLabel = data.status
   : undefined;
 ---
 
-<article aria-labelledby={titleId} class="grid items-start gap-8 border-t border-line pt-10 lg:grid-cols-12 lg:gap-12">
+<article aria-labelledby={titleId} class="grid items-start gap-8 rounded-xl border border-line p-5 sm:p-8 lg:grid-cols-12 lg:gap-12">
   {
     data.image && data.imageAlt && (
       <figure class:list={["flex flex-col gap-3 lg:col-span-7", reversed && "lg:order-2"]}>
@@ -59,8 +58,7 @@ const statusLabel = data.status
       <KindBadge kind={data.kind} lang={lang} />
       {statusLabel && <span class="kind kind-neutral">{statusLabel}</span>}
     </div>
-    <h3 id={titleId} class="flex items-baseline gap-4 text-[1.875rem] leading-tight font-bold tracking-[-0.02em]">
-      <span aria-hidden="true" class="font-mono text-base font-normal text-muted">{number}</span>
+    <h3 id={titleId} class="text-[1.875rem] leading-tight font-bold tracking-[-0.02em]">
       {data.title}
     </h3>
     <p class="text-[1.0625rem] leading-relaxed text-ink-2">{data.summary}</p>
