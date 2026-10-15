@@ -4,14 +4,14 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "astro build && node scripts/clean-pages-output.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "typecheck": "astro check",
     "i18n:audit": "node scripts/i18n-audit.mjs --strict",
     "seo:audit": "node scripts/seo-audit.mjs",
     "hreflang:audit": "node scripts/hreflang-audit.mjs",
-    "verify": "astro check && pnpm i18n:audit && pnpm seo:audit && astro build && pnpm hreflang:audit"
+    "verify": "astro check && pnpm i18n:audit && pnpm seo:audit && pnpm build && pnpm hreflang:audit"
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
