@@ -37,8 +37,7 @@
   "files.insertFinalNewline": true,
 
   // === JavaScript/TypeScript Config ===
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "typescript.updateImportsOnFileMove.enabled": "always",
+  "js/ts.updateImportsOnFileMove.enabled": "always",
 
   // === Overrides específicos ===
   "[markdown]": {
