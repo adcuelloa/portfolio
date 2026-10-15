@@ -15,17 +15,39 @@ const t = useTranslations(lang);
 const projects = await getProjects(lang);
 const featured = projects.filter((p) => p.data.featured);
 const more = projects.filter((p) => !p.data.featured);
-const href = (project: (typeof projects)[number]) => (hasCaseStudy(project) ? caseStudyPath(project) : undefined);
+const href = (project: (typeof projects)[number]) =>
+  hasCaseStudy(project) ? caseStudyPath(project) : undefined;
 ---
 
-<section id={sectionIds.work[lang]} aria-labelledby="work-title" class="mx-auto w-full max-w-[1200px] scroll-mt-6 px-4 pb-24 sm:px-8 lg:px-12">
-  <div class="flex flex-col gap-4 pb-12 lg:flex-row lg:items-end lg:justify-between lg:gap-16">
-    <SectionHeading eyebrow={t("home.work.eyebrow")} title={t("home.work.title")} id="work-title" />
-    <p class="max-w-[46ch] text-[0.9375rem] leading-relaxed text-muted">{t("home.work.lead")}</p>
+<section
+  id={sectionIds.work[lang]}
+  aria-labelledby="work-title"
+  class="mx-auto w-full max-w-300 scroll-mt-6 px-4 pb-24 sm:px-8 lg:px-12"
+>
+  <div
+    class="flex flex-col gap-4 pb-12 lg:flex-row lg:items-end lg:justify-between lg:gap-16"
+  >
+    <SectionHeading
+      eyebrow={t("home.work.eyebrow")}
+      title={t("home.work.title")}
+      id="work-title"
+    />
+    <p class="max-w-[46ch] text-[0.9375rem] leading-relaxed text-muted">
+      {t("home.work.lead")}
+    </p>
   </div>
 
   <div class="flex flex-col gap-8">
-    {featured.map((project, index) => <FeaturedProject project={project} lang={lang} index={index} caseStudyHref={href(project)} />)}
+    {
+      featured.map((project, index) => (
+        <FeaturedProject
+          project={project}
+          lang={lang}
+          index={index}
+          caseStudyHref={href(project)}
+        />
+      ))
+    }
   </div>
 
   {
@@ -34,7 +56,11 @@ const href = (project: (typeof projects)[number]) => (hasCaseStudy(project) ? ca
         <h3 class="eyebrow pb-4">{t("home.work.more")}</h3>
         <div class="flex flex-col gap-4">
           {more.map((project) => (
-            <ProjectRow project={project} lang={lang} caseStudyHref={href(project)} />
+            <ProjectRow
+              project={project}
+              lang={lang}
+              caseStudyHref={href(project)}
+            />
           ))}
         </div>
       </div>

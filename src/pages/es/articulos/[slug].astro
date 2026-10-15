@@ -6,7 +6,10 @@ import ArticlePage from "@/views/ArticlePage.astro";
 
 export const getStaticPaths = (async () => {
   const articles = await getPublishedArticles("es");
-  return articles.map((article) => ({ params: { slug: entrySlug(article) }, props: { article } }));
+  return articles.map((article) => ({
+    params: { slug: entrySlug(article) },
+    props: { article },
+  }));
 }) satisfies GetStaticPaths;
 
 const { article } = Astro.props;

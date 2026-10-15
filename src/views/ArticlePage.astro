@@ -21,9 +21,12 @@ const url = new URL(articlePath(article), site).href;
 
 // A translation is the published entry with the same file name in the other locale folder.
 const other = otherLocale(lang);
-const translation = (await getCollection("articles", (e) => entryLocale(e) === other && !e.data.draft)).find(
-  (e) => entrySlug(e) === entrySlug(article),
-);
+const translation = (
+  await getCollection(
+    "articles",
+    (e) => entryLocale(e) === other && !e.data.draft,
+  )
+).find((e) => entrySlug(e) === entrySlug(article));
 const alternates: Alternate[] = translation
   ? [
       { hreflang: lang, href: url },
@@ -32,7 +35,11 @@ const alternates: Alternate[] = translation
   : [];
 
 const { Content } = await render(article);
-const dateFormat = new Intl.DateTimeFormat(lang, { year: "numeric", month: "long", day: "numeric" });
+const dateFormat = new Intl.DateTimeFormat(lang, {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
 ---
 
 <BaseLayout
@@ -44,21 +51,54 @@ const dateFormat = new Intl.DateTimeFormat(lang, { year: "numeric", month: "long
     publishedTime: data.pubDate.toISOString(),
     updatedTime: data.updatedDate?.toISOString(),
     structuredData: [
-      blogPostingSchema({ title: data.title, description: data.description, url, lang, published: data.pubDate, updated: data.updatedDate, tags: data.tags }),
+      blogPostingSchema({
+        title: data.title,
+        description: data.description,
+        url,
+        lang,
+        published: data.pubDate,
+        updated: data.updatedDate,
+        tags: data.tags,
+      }),
     ],
   }}
-  languageHref={translation ? articlePath(translation) : localizedPath(other, "writing")}
+  languageHref={translation
+    ? articlePath(translation)
+    : localizedPath(other, "writing")}
 >
-  <article class="mx-auto flex w-full max-w-[760px] flex-col gap-8 px-4 py-20 sm:px-8 sm:py-28">
+  <article
+    class="mx-auto flex w-full max-w-190 flex-col gap-8 px-4 py-20 sm:px-8 sm:py-28"
+  >
     <header class="flex flex-col gap-4">
-      <a href={localizedPath(lang, "writing")} class="eyebrow self-start">← {t("writing.back")}</a>
-      <h1 class="text-[2.25rem] leading-[1.1] font-bold tracking-[-0.025em] text-balance sm:text-[3rem]">{data.title}</h1>
+      <a href={localizedPath(lang, "writing")} class="eyebrow self-start"
+        >← {t("writing.back")}</a
+      >
+      <h1
+        class="text-[2.25rem] leading-[1.1] font-bold tracking-tight text-balance sm:text-[3rem]"
+      >
+        {data.title}
+      </h1>
       <p class="font-mono text-[0.8125rem] text-muted">
-        {t("writing.published")} <time datetime={data.pubDate.toISOString()}>{dateFormat.format(data.pubDate)}</time>
-        {data.updatedDate && <> · {t("writing.updated")} <time datetime={data.updatedDate.toISOString()}>{dateFormat.format(data.updatedDate)}</time></>}
+        {t("writing.published")}
+        <time datetime={data.pubDate.toISOString()}
+          >{dateFormat.format(data.pubDate)}</time
+        >
+        {
+          data.updatedDate && (
+            <>
+              {" "}
+              · {t("writing.updated")}{" "}
+              <time datetime={data.updatedDate.toISOString()}>
+                {dateFormat.format(data.updatedDate)}
+              </time>
+            </>
+          )
+        }
       </p>
     </header>
-    <div class="prose-article flex flex-col gap-5 text-[1.0625rem] leading-[1.75] text-ink-2">
+    <div
+      class="prose-article flex flex-col gap-5 text-[1.0625rem] leading-[1.75] text-ink-2"
+    >
       <Content />
     </div>
   </article>

@@ -1,6 +1,11 @@
 ---
 import ThemeToggle from "@/components/site/ThemeToggle.astro";
-import { localizedPath, otherLocale, sectionHref, type Locale } from "@/i18n/routes";
+import {
+  localizedPath,
+  otherLocale,
+  sectionHref,
+  type Locale,
+} from "@/i18n/routes";
 import { useTranslations } from "@/i18n/utils";
 import { SITE } from "@/lib/site";
 
@@ -21,13 +26,24 @@ const nav = [
 ];
 ---
 
-<header transition:name="site-header" class="mx-auto w-full max-w-[1200px] px-4 sm:px-8 lg:px-12">
-  <div class="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 border-b border-line py-3">
-    <a href={localizedPath(lang, "home")} class="py-2 text-[1.0625rem] font-semibold tracking-tight text-ink no-underline">
+<header
+  transition:name="site-header"
+  class="mx-auto w-full max-w-300 px-4 sm:px-8 lg:px-12"
+>
+  <div
+    class="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 border-b border-line py-3"
+  >
+    <a
+      href={localizedPath(lang, "home")}
+      class="py-2 text-[1.0625rem] font-semibold tracking-tight text-ink no-underline"
+    >
       {SITE.name}
     </a>
 
-    <nav aria-label={t("common.nav.label")} class="order-3 -mx-2 w-[calc(100%+1rem)] overflow-x-auto sm:order-none sm:mx-0 sm:ml-auto sm:w-auto">
+    <nav
+      aria-label={t("common.nav.label")}
+      class="order-3 -mx-2 w-[calc(100%+1rem)] overflow-x-auto sm:order-0 sm:mx-0 sm:ml-auto sm:w-auto"
+    >
       <ul class="flex items-center justify-between sm:justify-start">
         {
           nav.map((item) => (
@@ -44,7 +60,7 @@ const nav = [
       </ul>
     </nav>
 
-    <div class="order-2 flex items-center gap-1 sm:order-none">
+    <div class="order-2 flex items-center gap-1 sm:order-0">
       <a
         href={languageHref ?? localizedPath(other, "home")}
         hreflang={other}

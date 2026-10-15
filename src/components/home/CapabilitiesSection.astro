@@ -12,17 +12,28 @@ const t = useTranslations(lang);
 const items = ui[lang].home.capabilities.items;
 ---
 
-<section aria-labelledby="capabilities-title" class="mx-auto w-full max-w-[1200px] px-4 pb-24 sm:px-8 lg:px-12">
+<section
+  aria-labelledby="capabilities-title"
+  class="mx-auto w-full max-w-300 px-4 pb-24 sm:px-8 lg:px-12"
+>
   <div class="pb-10">
-    <SectionHeading eyebrow={t("home.capabilities.eyebrow")} title={t("home.capabilities.title")} id="capabilities-title" />
+    <SectionHeading
+      eyebrow={t("home.capabilities.eyebrow")}
+      title={t("home.capabilities.title")}
+      id="capabilities-title"
+    />
   </div>
-  <ul class="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+  <ul
+    class="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4"
+  >
     {
       items.map((item) => (
         <li class="flex flex-col gap-3 bg-surface p-6">
           <h3 class="text-[1.125rem] font-semibold">{item.title}</h3>
           <p class="text-[0.9375rem] leading-relaxed text-ink-2">{item.body}</p>
-          <p class="mt-auto pt-2 font-mono text-[0.75rem] leading-relaxed text-accent-ink">→ {item.proof}</p>
+          <p class="mt-auto pt-2 font-mono text-[0.75rem] leading-relaxed text-accent-ink">
+            → {item.proof}
+          </p>
         </li>
       ))
     }

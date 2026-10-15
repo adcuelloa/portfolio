@@ -13,7 +13,10 @@ const { eyebrow, title, id } = Astro.props;
     <span aria-hidden="true" class="h-px w-8 bg-accent"></span>
     <span>{eyebrow}</span>
   </p>
-  <h2 id={id} class="text-[2rem] leading-[1.1] font-bold tracking-[-0.02em] text-balance sm:text-[2.5rem]">
+  <h2
+    id={id}
+    class="text-[2rem] leading-[1.1] font-bold tracking-[-0.02em] text-balance sm:text-[2.5rem]"
+  >
     {title}
   </h2>
 </div>
