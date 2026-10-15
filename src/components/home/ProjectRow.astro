@@ -45,23 +45,29 @@ const statusLabel = data.status
     <p class="text-muted text-[0.875rem] leading-relaxed">{data.statusNote}</p>
   </div>
 
-  <div class="flex flex-col gap-2 lg:col-span-3">
-    <p class="text-ink-2 font-mono text-[0.8125rem] leading-relaxed">{data.stack.join(" · ")}</p>
-    <div class="flex flex-wrap gap-x-6">
-      {caseStudyHref && (
-        <a
-          href={caseStudyHref}
-          class="text-accent-ink inline-flex min-h-11 items-center font-medium"
-        >
-          {t("common.links.caseStudy")} →
-        </a>
+  {(data.stack.length > 0 || caseStudyHref || data.links.live || data.links.repository) && (
+    <div class="flex flex-col gap-2 lg:col-span-3">
+      {data.stack.length > 0 && (
+        <p class="text-ink-2 font-mono text-[0.8125rem] leading-relaxed">
+          {data.stack.join(" · ")}
+        </p>
       )}
-      {data.links.live && (
-        <ExternalLink href={data.links.live}>{t("common.links.visit")}</ExternalLink>
-      )}
-      {data.links.repository && (
-        <ExternalLink href={data.links.repository}>{t("common.links.repository")}</ExternalLink>
-      )}
+      <div class="flex flex-wrap gap-x-6">
+        {caseStudyHref && (
+          <a
+            href={caseStudyHref}
+            class="text-accent-ink inline-flex min-h-11 items-center font-medium"
+          >
+            {t("common.links.caseStudy")} →
+          </a>
+        )}
+        {data.links.live && (
+          <ExternalLink href={data.links.live}>{t("common.links.visit")}</ExternalLink>
+        )}
+        {data.links.repository && (
+          <ExternalLink href={data.links.repository}>{t("common.links.repository")}</ExternalLink>
+        )}
+      </div>
     </div>
-  </div>
+  )}
 </article>

@@ -1,10 +1,10 @@
 ---
 import { Image } from "astro:assets";
-import { getCollection, render, type CollectionEntry } from "astro:content";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 
 import ExternalLink from "@/components/ui/ExternalLink.astro";
 import KindBadge from "@/components/ui/KindBadge.astro";
-import { localizedPath, otherLocale, sectionHref, type Alternate } from "@/i18n/routes";
+import { type Alternate, localizedPath, otherLocale, sectionHref } from "@/i18n/routes";
 import { useTranslations } from "@/i18n/utils";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { caseStudyPath, entryLocale, entrySlug, hasCaseStudy } from "@/lib/content";

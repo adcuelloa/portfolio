@@ -11,12 +11,14 @@
     "i18n:audit": "node scripts/i18n-audit.mjs --strict",
     "seo:audit": "node scripts/seo-audit.mjs",
     "hreflang:audit": "node scripts/hreflang-audit.mjs",
-    "verify": "pnpm i18n:audit && pnpm seo:audit && pnpm build && pnpm hreflang:audit",
+    "verify": "pnpm i18n:audit && pnpm seo:audit && pnpm fmt:check && pnpm lint && pnpm build && pnpm hreflang:audit",
     "deploy": "pnpm build && wrangler deploy",
     "wrangler:types": "wrangler types",
     "csp:audit": "node scripts/csp-audit.mjs",
     "fmt": "oxfmt",
-    "fmt:check": "oxfmt --check"
+    "fmt:check": "oxfmt --check",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix"
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
@@ -36,6 +38,7 @@
   "devDependencies": {
     "@astrojs/compiler-rs": "0.5.2",
     "oxfmt": "0.73.0",
+    "oxlint": "1.88.0",
     "wrangler": "4.151.0"
   }
 }

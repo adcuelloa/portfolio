@@ -1,7 +1,7 @@
 ---
-import { getCollection, render, type CollectionEntry } from "astro:content";
+import { type CollectionEntry, getCollection, render } from "astro:content";
 
-import { localizedPath, otherLocale, type Alternate } from "@/i18n/routes";
+import { type Alternate, localizedPath, otherLocale } from "@/i18n/routes";
 import { useTranslations } from "@/i18n/utils";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { articlePath, entryLocale, entrySlug } from "@/lib/content";

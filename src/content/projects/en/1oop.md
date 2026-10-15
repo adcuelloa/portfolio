@@ -1,9 +1,8 @@
 ---
 title: 1oop
-summary: An ongoing experiment in a reusable, agent-friendly Astro 7 base for bilingual landing pages on Cloudflare Workers.
+summary: A software venture focused on helping small and medium-sized businesses modernize their systems and automate processes through tailored solutions.
 kind: independent
-status: experimental
-statusNote: Experimental and in progress. The preview at 1oop.dev is private.
-stack: [Astro, TypeScript, Cloudflare Workers]
+statusNote: Early-stage initiative.
+stack: []
 order: 3
 ---

@@ -1,6 +1,6 @@
-import { getCollection, type CollectionEntry } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 
-import { isLocale, localizedPath, type Locale } from "@/i18n/routes";
+import { isLocale, type Locale, localizedPath } from "@/i18n/routes";
 
 type Entry = { id: string };
 

@@ -1,0 +1,44 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["import", "unicorn", "oxc", "typescript"],
+  "categories": {
+    "correctness": "error",
+    "suspicious": "warn",
+    "perf": "warn"
+  },
+  "env": {
+    "es2024": true,
+    "browser": true,
+    "node": true
+  },
+  "ignorePatterns": ["**/node_modules/**", "**/dist/**", "**/.astro/**", "**/.wrangler/**"],
+  "rules": {
+    "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
+    "no-debugger": "warn",
+    "no-unused-vars": "off",
+    "eqeqeq": ["error", "always", { "null": "ignore" }],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": false
+      }
+    ],
+    "import/no-unassigned-import": "off",
+    "import/no-duplicates": "error",
+    "import/first": "error",
+    "import/no-absolute-path": "error",
+    "typescript/triple-slash-reference": "off"
+  },
+  "overrides": [
+    {
+      "files": ["**/*.config.{js,cjs,mjs,ts}", "scripts/**"],
+      "rules": {
+        "import/named": "off",
+        "typescript/consistent-type-imports": "off",
+        "no-console": "off"
+      }
+    }
+  ]
+}

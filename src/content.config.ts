@@ -20,7 +20,8 @@ const projects = defineCollection({
       statusNote: z.string(),
       /** Verifiable implementation facts, shown on featured cards. */
       highlights: z.array(z.string()).max(4).default([]),
-      stack: z.array(z.string()).min(1),
+      /** Initiatives in formation may not have a technology stack yet. */
+      stack: z.array(z.string()),
       links: z
         .object({
           live: z.url().optional(),

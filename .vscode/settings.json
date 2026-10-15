@@ -9,8 +9,7 @@
 
   // === Code Actions ===
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "never" // Prettier plugin lo maneja
+    "source.fixAll.oxc": "explicit"
   },
 
   // === Files Config ===
