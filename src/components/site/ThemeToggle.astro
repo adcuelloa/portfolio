@@ -29,21 +29,31 @@ const maskId = `theme-mask-${crypto.randomUUID()}`;
 </button>
 
 <style>
+  .theme-disc {
+    r: var(--icon-radius, 5px);
+  }
   .theme-cutout {
-    transform: translate(12px, -12px);
+    transform: var(--icon-cutout, translate(12px, -12px));
   }
   .theme-rays {
     transform-origin: 12px 12px;
+    opacity: var(--icon-rays-opacity, 1);
+    transform: var(--icon-rays-transform, none);
   }
-  [aria-pressed="true"] .theme-disc {
-    r: 8px;
+
+  :global(:root[data-theme="dark"]) svg {
+    --icon-radius: 8px;
+    --icon-cutout: translate(0, 0);
+    --icon-rays-opacity: 0;
+    --icon-rays-transform: rotate(45deg) scale(0.5);
   }
-  [aria-pressed="true"] .theme-cutout {
-    transform: translate(0, 0);
-  }
-  [aria-pressed="true"] .theme-rays {
-    opacity: 0;
-    transform: rotate(45deg) scale(0.5);
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme="light"])) svg {
+      --icon-radius: 8px;
+      --icon-cutout: translate(0, 0);
+      --icon-rays-opacity: 0;
+      --icon-rays-transform: rotate(45deg) scale(0.5);
+    }
   }
   @media (prefers-reduced-motion: no-preference) {
     .theme-disc {
