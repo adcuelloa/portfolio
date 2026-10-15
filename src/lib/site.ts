@@ -6,6 +6,7 @@ export const SITE = {
   fullName: "Andrés David Cuello Acosta",
   url: siteUrl,
   cdnUrl,
+  email: "andres@cuello.dev",
   twitter: "@adcuelloa",
   timeZone: "America/Bogota",
   links: {

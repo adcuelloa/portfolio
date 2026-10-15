@@ -19,6 +19,7 @@ export default {
     },
     footer: {
       role: "Desarrollador web · Colombia, UTC−5",
+      email: "Correo",
       backToTop: "Volver arriba",
     },
     kinds: {
@@ -134,7 +135,8 @@ export default {
     contact: {
       eyebrow: "Contacto",
       title: "¿Buscas a alguien para un rol web o frontend remoto?",
-      body: "La mejor forma de contactarme es LinkedIn. También puedes agendar una llamada corta.",
+      body: "El correo es la forma más directa de contactarme. También puedes escribirme por LinkedIn o agendar una llamada corta.",
+      emailAria: "Enviar un correo a andres@cuello.dev",
       linkedin: "Escríbeme en LinkedIn",
       github: "GitHub",
       call: "Agendar una llamada",

@@ -23,6 +23,7 @@ export interface Translations {
     };
     footer: {
       role: string;
+      email: string;
       backToTop: string;
     };
     kinds: {
@@ -107,6 +108,7 @@ export interface Translations {
       eyebrow: string;
       title: string;
       body: string;
+      emailAria: string;
       linkedin: string;
       github: string;
       call: string;

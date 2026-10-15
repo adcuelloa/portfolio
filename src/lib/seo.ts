@@ -57,6 +57,7 @@ export function personSchema(lang: Locale, description: string): StructuredData 
     description,
     knowsLanguage: ["es", "en"],
     address: { "@type": "PostalAddress", addressCountry: "CO" },
+    email: `mailto:${SITE.email}`,
     sameAs: [SITE.links.github, SITE.links.linkedin],
   };
 }

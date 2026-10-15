@@ -19,6 +19,7 @@ export default {
     },
     footer: {
       role: "Web engineer · Colombia, UTC−5",
+      email: "Email",
       backToTop: "Back to top",
     },
     kinds: {
@@ -134,7 +135,8 @@ export default {
     contact: {
       eyebrow: "Contact",
       title: "Hiring for a remote web or frontend role?",
-      body: "LinkedIn is the best way to reach me. You can also book a short call.",
+      body: "Email is the most direct way to reach me. LinkedIn and a short call work too.",
+      emailAria: "Send an email to andres@cuello.dev",
       linkedin: "Message me on LinkedIn",
       github: "GitHub",
       call: "Book a call",

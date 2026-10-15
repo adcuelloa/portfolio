@@ -23,6 +23,13 @@ const links = [
       <span class="text-muted"> — {t("common.footer.role")}</span>
     </p>
     <ul class="-mx-3 flex flex-wrap items-center">
+      <Fragment set:html="<!--email_off-->" />
+      <li>
+        <a href={`mailto:${SITE.email}`} class="inline-flex min-h-11 items-center px-3 text-[0.9375rem] text-ink-2 no-underline hover:text-accent-ink">
+          {t("common.footer.email")}<span class="sr-only">: {SITE.email}</span>
+        </a>
+      </li>
+      <Fragment set:html="<!--/email_off-->" />
       {
         links.map((link) => (
           <li>

@@ -20,21 +20,40 @@ const t = useTranslations(lang);
       </h2>
       <p class="text-[1.0625rem] leading-relaxed text-invert-muted">{t("home.contact.body")}</p>
     </div>
-    <div class="flex flex-wrap gap-3">
-      <a href={SITE.links.linkedin} class="inline-flex min-h-12 items-center rounded-lg bg-invert-fg px-5 font-medium text-invert no-underline hover:opacity-90">
-        {t("home.contact.linkedin")}
-      </a>
+    <div class="flex flex-col gap-3 lg:items-end xl:shrink-0">
+      <!--
+        email_off: keep Cloudflare Email Obfuscation away from this address. Its decoder runs once per
+        full page load, so after a client-router navigation the link would stay as "[email protected]".
+      -->
+      <Fragment set:html="<!--email_off-->" />
       <a
-        href={SITE.links.calendly}
-        target="_blank"
-        rel="noopener"
-        class="inline-flex min-h-12 items-center rounded-lg px-5 font-medium text-invert-fg no-underline ring-1 ring-invert-line ring-inset hover:bg-invert-fg/10"
+        href={`mailto:${SITE.email}`}
+        aria-label={t("home.contact.emailAria")}
+        class="inline-flex min-h-12 items-center gap-2.5 self-stretch rounded-lg bg-invert-fg px-5 font-medium text-invert no-underline hover:opacity-90 sm:self-auto"
       >
-        {t("home.contact.call")}<span class="sr-only"> ({t("home.contact.newTab")})</span>
+        <svg aria-hidden="true" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+          <path d="m3 7 9 6 9-6"></path>
+        </svg>
+        {SITE.email}
       </a>
-      <a href={SITE.links.github} class="inline-flex min-h-12 items-center rounded-lg px-5 font-medium text-invert-fg no-underline ring-1 ring-invert-line ring-inset hover:bg-invert-fg/10">
-        {t("home.contact.github")}
-      </a>
+      <Fragment set:html="<!--/email_off-->" />
+      <div class="flex flex-wrap gap-3 lg:justify-end xl:flex-nowrap">
+        <a href={SITE.links.linkedin} class="inline-flex min-h-12 items-center rounded-lg px-5 font-medium text-invert-fg no-underline ring-1 ring-invert-line ring-inset hover:bg-invert-fg/10">
+          {t("home.contact.linkedin")}
+        </a>
+        <a
+          href={SITE.links.calendly}
+          target="_blank"
+          rel="noopener"
+          class="inline-flex min-h-12 items-center rounded-lg px-5 font-medium text-invert-fg no-underline ring-1 ring-invert-line ring-inset hover:bg-invert-fg/10"
+        >
+          {t("home.contact.call")}<span class="sr-only"> ({t("home.contact.newTab")})</span>
+        </a>
+        <a href={SITE.links.github} class="inline-flex min-h-12 items-center rounded-lg px-5 font-medium text-invert-fg no-underline ring-1 ring-invert-line ring-inset hover:bg-invert-fg/10">
+          {t("home.contact.github")}
+        </a>
+      </div>
     </div>
   </div>
 </section>
