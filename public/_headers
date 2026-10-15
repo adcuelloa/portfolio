@@ -5,4 +5,4 @@
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
   Cross-Origin-Opener-Policy: same-origin
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-c2iwLHPXMjaSu64bX24GTTYfRhprwQe+s0iw4KVlUo8=' 'sha256-w6oLDORR2HjmOEW9P8A9QhGH74N4vNMu8ByBkel0aNk='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.cuello.dev; font-src 'self'; connect-src 'self'; frame-src 'none'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-jOnsSrg6Xkn8f+ozOSPasdn23keXiWdsSSqFbWPMSVQ=' 'sha256-w6oLDORR2HjmOEW9P8A9QhGH74N4vNMu8ByBkel0aNk='; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.cuello.dev; font-src 'self'; connect-src 'self'; frame-src 'none'; frame-ancestors 'none'; object-src 'none'; base-uri 'self'; form-action 'self'
