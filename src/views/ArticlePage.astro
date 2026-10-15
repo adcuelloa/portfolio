@@ -80,6 +80,7 @@ const dateFormat = new Intl.DateTimeFormat(lang, {
       </h1>
       <p class="font-mono text-[0.8125rem] text-muted">
         {t("writing.published")}
+        {" "}
         <time datetime={data.pubDate.toISOString()}
           >{dateFormat.format(data.pubDate)}</time
         >
