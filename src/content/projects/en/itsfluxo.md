@@ -25,7 +25,7 @@ ItsFluxo sells websites, content, Meta Ads and automations to businesses in Colo
 
 ## What I built
 
-- **Prerendered pages** for home, services, results, process, contact and the legal documents, with Spanish as the default language and an English home page. Legal texts live in an Astro content collection.
+- **Prerendered pages** for home, services, results, process, contact, a blog and the legal documents, fully bilingual: Spanish at the root and every page in English under `/en`, linked with reciprocal hreflang. Legal texts live in an Astro content collection.
 - **A contact endpoint on demand.** Everything is static except `/api/contact`, which runs on Cloudflare Workers, checks a Cloudflare Turnstile token and sends the message through Resend. Secrets stay in the Worker runtime.
 - **Consent first.** Cookie preferences use Vanilla CookieConsent in Spanish, and the Meta Pixel loads only after the visitor accepts the *Marketing* category.
 - **Motion with restraint.** Simple reveals use CSS scroll-driven animations with a `prefers-reduced-motion` fallback. GSAP is reserved for the more complex sequences, with cleanup on every client-router navigation.
@@ -35,7 +35,7 @@ ItsFluxo sells websites, content, Meta Ads and automations to businesses in Colo
 
 - **Static first, one server route.** Only the form needs a server, so the rest of the site is plain HTML from the edge.
 - **One lifecycle module** (`pageLifecycle.ts`) owns scroll, hashes and navigation events, so components don't each reinvent them.
-- **Typed i18n catalogs** with localized slugs. Alternate-language links are published only for pages that really have a translation.
+- **Typed i18n catalogs** with localized slugs (`/servicios` ↔ `/en/services`), so each language gets natural URLs.
 
 ## Status
 

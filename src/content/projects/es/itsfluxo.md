@@ -25,7 +25,7 @@ ItsFluxo ofrece páginas web, contenido, Meta Ads y automatizaciones a negocios 
 
 ## Qué construí
 
-- **Páginas prerenderizadas** para inicio, servicios, resultados, proceso, contacto y documentos legales, con el español como idioma predeterminado y una página de inicio en inglés. Los textos legales viven en una content collection de Astro.
+- **Páginas prerenderizadas** para inicio, servicios, resultados, proceso, contacto, un blog y los documentos legales, totalmente bilingües: español en la raíz y cada página en inglés bajo `/en`, enlazadas con hreflang recíproco. Los textos legales viven en una content collection de Astro.
 - **Un endpoint de contacto bajo demanda.** Todo es estático excepto `/api/contact`, que corre en Cloudflare Workers, valida un token de Cloudflare Turnstile y envía el mensaje con Resend. Los secretos se quedan en el runtime del Worker.
 - **Consentimiento primero.** Las preferencias de cookies usan Vanilla CookieConsent en español, y el píxel de Meta solo se carga si el visitante acepta la categoría *Marketing*.
 - **Animación con mesura.** Las apariciones simples usan animaciones CSS guiadas por scroll con alternativa para `prefers-reduced-motion`. GSAP queda para las secuencias más complejas, con limpieza en cada navegación del client router.
@@ -35,7 +35,7 @@ ItsFluxo ofrece páginas web, contenido, Meta Ads y automatizaciones a negocios 
 
 - **Estático primero, una sola ruta de servidor.** Solo el formulario necesita servidor, así que el resto del sitio es HTML servido desde el edge.
 - **Un único módulo de ciclo de vida** (`pageLifecycle.ts`) maneja scroll, hashes y eventos de navegación, para que cada componente no lo reinvente.
-- **Catálogos i18n tipados** con slugs localizados. Solo se publican enlaces a otro idioma cuando la página traducida existe de verdad.
+- **Catálogos i18n tipados** con slugs localizados (`/servicios` ↔ `/en/services`), para que cada idioma tenga URLs naturales.
 
 ## Estado
 
