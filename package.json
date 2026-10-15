@@ -4,14 +4,15 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build && node scripts/clean-pages-output.mjs",
+    "build": "astro build && node scripts/clean-static-output.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "typecheck": "astro check",
     "i18n:audit": "node scripts/i18n-audit.mjs --strict",
     "seo:audit": "node scripts/seo-audit.mjs",
     "hreflang:audit": "node scripts/hreflang-audit.mjs",
-    "verify": "astro check && pnpm i18n:audit && pnpm seo:audit && pnpm build && pnpm hreflang:audit"
+    "verify": "astro check && pnpm i18n:audit && pnpm seo:audit && pnpm build && pnpm hreflang:audit",
+    "deploy": "pnpm build && wrangler deploy"
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
@@ -23,5 +24,12 @@
     "astro": "7.3.8",
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3"
+  },
+  "engines": {
+    "node": ">=24.20.0 <25"
+  },
+  "packageManager": "pnpm@12.14.0",
+  "devDependencies": {
+    "wrangler": "4.151.0"
   }
 }

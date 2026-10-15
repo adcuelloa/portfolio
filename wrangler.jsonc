@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  // cuello.dev is fully prerendered: the Worker serves static assets only (no script runs per request).
+  "name": "portfolio",
+  "compatibility_date": "2026-10-12",
+  "assets": {
+    "directory": "./dist/client",
+    // /es.html is served at /es; /es/ redirects to /es (matches trailingSlash: "never").
+    "html_handling": "auto-trailing-slash",
+    // Unknown URLs get the nearest 404.html (Spanish under /es/).
+    "not_found_handling": "404-page",
+  },
+  "observability": {
+    "enabled": true,
+  },
+}
