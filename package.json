@@ -14,7 +14,9 @@
     "verify": "pnpm i18n:audit && pnpm seo:audit && pnpm build && pnpm hreflang:audit",
     "deploy": "pnpm build && wrangler deploy",
     "wrangler:types": "wrangler types",
-    "csp:audit": "node scripts/csp-audit.mjs"
+    "csp:audit": "node scripts/csp-audit.mjs",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
@@ -32,6 +34,8 @@
   },
   "packageManager": "pnpm@12.14.0",
   "devDependencies": {
+    "@astrojs/compiler-rs": "0.5.2",
+    "oxfmt": "0.73.0",
     "wrangler": "4.151.0"
   }
 }
