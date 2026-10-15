@@ -8,4 +8,7 @@ const output = join(process.cwd(), "dist", "client");
 for (const file of ["wrangler.json", ".assetsignore", ".dev.vars"]) {
   rmSync(join(output, file), { force: true });
 }
+// The adapter's deploy redirect points wrangler at the removed wrangler.json; drop it too so
+// `wrangler pages deploy dist/client` works without a Worker config.
+rmSync(join(process.cwd(), ".wrangler", "deploy", "config.json"), { force: true });
 console.info("Removed Worker-only files from dist/client (Pages output).");
