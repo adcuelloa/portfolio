@@ -34,11 +34,6 @@ const t = useTranslations(lang);
       </p>
     </div>
     <div class="flex flex-col gap-3 lg:items-end xl:shrink-0">
-      <!--
-        email_off: keep Cloudflare Email Obfuscation away from this address. Its decoder runs once per
-        full page load, so after a client-router navigation the link would stay as "[email protected]".
-      -->
-      <Fragment set:html="<!--email_off-->" />
       <a
         href={`mailto:${SITE.email}`}
         aria-label={t("home.contact.emailAria")}
@@ -60,7 +55,6 @@ const t = useTranslations(lang);
         </svg>
         {SITE.email}
       </a>
-      <Fragment set:html="<!--/email_off-->" />
       <div class="flex flex-wrap gap-3 lg:justify-end xl:flex-nowrap">
         <a
           href={SITE.links.linkedin}
